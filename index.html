@@ -88,6 +88,13 @@ main{padding:10px}.card{padding:13px;margin-bottom:10px;border-radius:17px}h2{fo
  .workout-tip{font-size:12px}
 }
 @media(max-height:700px){.workout-visual{height:22vh;min-height:120px}.workout-shell{gap:5px}.workout-clock{margin:0}.workout-title{font-size:23px}}
+
+/* Mobile-Fix: date input has a wide native minimum size on iOS/Android.
+   Stack the two inputs instead of squeezing them into half-width columns. */
+.race-fields{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;width:100%;min-width:0}
+.race-fields .field{min-width:0;width:100%;max-width:100%}
+.race-fields input{display:block;box-sizing:border-box;min-width:0;max-width:100%;width:100%;font-size:16px}
+@media(min-width:680px){.race-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -95,11 +102,11 @@ main{padding:10px}.card{padding:13px;margin-bottom:10px;border-radius:17px}h2{fo
 <header><div class="eyebrow">RUN YOUR WAY</div><h1>Dein Laufcoach 💗</h1><div class="hero-stat"><span>🏃‍♀️ 35–40 km / Woche</span><span>💜 Mittwoch frei</span></div></header>
 <main>
 <section class="card" id="start"><div class="flex"><h2>Heute &amp; morgen ✨</h2></div><div class="topcards"><article class="nextcard" id="todayCard"></article><article class="nextcard" id="tomorrowCard"></article></div><div class="hint" id="motivation">Du schaffst das! 💜</div></section>
-<section class="card" id="wettkaempfe"><div class="flex"><h2>Wettkämpfe 🏅</h2></div><form id="raceForm"><div class="fields"><div class="field"><label for="raceDate">Wettkampftag</label><input id="raceDate" type="date" required></div><div class="field"><label for="raceDistance">Distanz</label><select id="raceDistance"><option value="5">5 km</option><option value="10">10 km</option><option value="3">3.000 m</option><option value="1.5">1.500 m</option><option value="0.8">800 m</option><option value="custom">Andere Distanz</option></select></div></div><div class="field hidden" id="customWrap" style="margin-top:9px"><label for="customDistance">Distanz in km</label><input id="customDistance" type="number" inputmode="decimal" min="0.1" max="100" step="0.1" placeholder="z. B. 4,2"></div><div class="actions"><button class="primary" type="submit">+ Speichern</button><button type="button" class="secondary" id="showRaceWeek">Zur Wettkampfwoche</button></div><div class="small" id="raceMessage" role="status"></div></form><div class="races" id="raceList"></div><p class="small">Nach dem Rennen Ø-Pace eintragen → nächste Trainingswochen passen sich an. Nur auf diesem Gerät gespeichert.</p></section>
+<section class="card" id="wettkaempfe"><div class="flex"><h2>Wettkämpfe 🏅</h2></div><form id="raceForm"><div class="fields race-fields"><div class="field"><label for="raceDate">Wettkampftag</label><input id="raceDate" type="date" required></div><div class="field"><label for="raceDistance">Distanz (km)</label><input id="raceDistance" name="raceDistance" type="number" inputmode="decimal" min="1" max="21" step="0.1" value="5" required placeholder="1 bis 21"></div></div><div class="actions"><button class="primary" type="submit">+ Speichern</button><button type="button" class="secondary" id="showRaceWeek">Zur Wettkampfwoche</button></div><div class="small" id="raceMessage" role="status"></div></form><div class="races" id="raceList"></div><p class="small">Nach dem Rennen die Wettkampf-Pace direkt unten eintragen → nächste Wochen passen sich an. Nur auf diesem Gerät gespeichert.</p></section>
 
 <section class="card" id="wochenplan"><div class="flex"><h2>Wochenplan 🌸</h2><span class="pill" id="weekType">Normalwoche</span></div><div class="week-nav"><button class="secondary" id="prevWeek" aria-label="Vorherige Woche">‹</button><b id="weekLabel">–</b><button class="secondary" id="nextWeek" aria-label="Nächste Woche">›</button><button class="ghost" id="thisWeek">Heute</button></div><div class="week" id="week"></div><div class="weeklystats"><div class="stat"><b id="plannedKm">–</b><span>Geplant km</span></div><div class="stat"><b id="referencePace">–</b><span>5-km-Pace</span></div><div class="stat"><b id="goalKm">35–40</b><span>Zielbereich km</span></div></div><div class="progress"><div id="progressFill"></div></div><p class="small" id="weekSummary"></p></section>
 <section class="card" id="stabi"><div class="flex"><h2>Stabi-Coach 💪</h2><span class="pill">~ 20 Min</span></div><button class="primary workout-start" id="guidedStart" type="button">▶ Workout starten</button><p class="small" style="margin:6px 0 0;text-align:center">Fotos · Übung → Pause → nächste Übung</p></section>
-<footer>Bleib dran – und gönn dir deine Pausen. 💜</footer>
+<footer>Vor Wettkämpfen zählt Frische mehr als erzwungene Kilometer. Bei Müdigkeit oder Schmerzen darfst du kürzen. 💜</footer>
 </main>
 </div>
 
@@ -207,7 +214,7 @@ function easyDay(base,type,date){
  return {...base,pace:ep.join('–')+' min/km',mins:duration(base.km,ep[0],ep[1])+(base.tag.includes('STABI')?' + Stabi':'')};
 }
 
-function planDay(date){
+function rawPlanDay(date){
  const dow=(date.getDay()+6)%7;
  const base=[
  {title:'Leichtathletik-Training',tag:'VEREIN',km:0,pace:'keine Lauf-km',mins:'nach Vereinstraining',details:'Technik, Koordination und Sprünge. Die Belastung zählt – aber wir rechnen keine pauschalen Kilometer.'},
@@ -215,7 +222,7 @@ function planDay(date){
  {title:'Ruhetag',tag:'ERHOLUNG',km:0,pace:'–',mins:'frei',details:'Kein Lauf. Spaziergang oder sanfte Mobilität okay – heute erholen wir uns bewusst.'},
  {title:'8 km locker + 20 Min Stabi',tag:'GRUNDLAGE + STABI',km:8,pace:'6:15–6:55/km',mins:'50–55 Min + Stabi',details:'Lockerer Dauerlauf im Gesprächstempo. Danach Aufwärmen + Kraft- und Stabi-Zirkel auf dieser Seite.'},
  {title:'5 km locker',tag:'LOCKER',km:5,pace:'6:25–7:05/km',mins:'32–35 Min',details:'Sehr entspannt, du solltest problemlos reden können. Bei schweren Beinen lieber kürzen.'},
- {title:'4 km locker',tag:'LOCKER',km:4,pace:'6:20–7:00/km',mins:'25–28 Min',details:'Entspannt bewegen. Wenn morgen ein Rennen ansteht: nur kurz aktivieren.'},
+ {title:'5 km locker',tag:'LOCKER',km:5,pace:'6:20–7:00/km',mins:'32–35 Min',details:'Entspannt bewegen. Wenn morgen ein Rennen ansteht: nur kurz aktivieren.'},
  {title:'11 km langer Lauf',tag:'AUSDAUER',km:11,pace:'6:20–7:00/km',mins:'70–77 Min',details:'Ruhig und gleichmäßig. Keine Tempojagd, der längere Lauf stärkt deine Ausdauer.'}
  ][dow];
  let p={...base};
@@ -240,7 +247,7 @@ function planDay(date){
  }
  const race=races.find(r=>matches(r,date));
  if(race){
-  const km=Number(race.km),warm=km<=3?2:1.5,cool=km<=3?1.5:1.5,full=round(km+warm+cool);
+  const km=Number(race.km),warm=km<=1?2.5:km<=3?2:1.5,cool=Math.max(1.5,round(5-km-warm)),full=round(km+warm+cool);
   const pace=paceRace(km,date),paceVal=fiveKSeconds(date).seconds/5,raceTime=km===5?`${paceOnly(paceVal*5)}–${paceOnly((paceVal+7)*5)} Min Rennen` : km===10?`${paceOnly(paceVal*10*1.05)}–${paceOnly(paceVal*10*1.12)} Min Rennen`:'Rennzeit nach Tagesform';
   p={title:`Wettkampf · ${fmt(km)} km 🏅`,tag:'WETTKAMPF',km:full,pace,mins:`${raceTime} + Ein-/Auslaufen`,details:`${fmt(warm)} km locker einlaufen, Lauf-ABC/Steigerungen, ${fmt(km)} km Wettkampf, ${fmt(cool)} km locker auslaufen, falls du dich gut fühlst. Geplante ${fmt(full)} km inkl. Ein-/Auslaufen.`,race:true};
  }
@@ -253,6 +260,157 @@ function planDay(date){
   }
   return p;
 }
+
+
+// 35–40 Wochen-km, auch in Wettkampfwochen, ohne Läufe unter 5 km.
+// Erholungstage Mo (Leichtathletik) und Mi bleiben lauf-frei, sofern dort kein Wettkampf liegt.
+// Die Wettkampfphase drosselt vor allem Intensität; ein hoher Wochenumfang ersetzt keine Regeneration.
+function weekPlans(start){
+ const plans=Array.from({length:7},(_,i)=>rawPlanDay(addDays(start,i)));
+ const eventIndices=plans.map((p,i)=>p.race?i:-1).filter(i=>i>=0);
+ const hasRace=eventIndices.length>0;
+ const isProtected=i=>(i===0||i===2)&&!plans[i].race;
+ const isRace=i=>Boolean(plans[i].race);
+ const raceOffset=i=>eventIndices.length?Math.min(...eventIndices.map(r=>Math.abs(r-i))):99;
+ const active=()=>round(plans.reduce((acc,p)=>acc+p.km,0));
+
+ function setDistance(i,n){
+  const p=plans[i];if(isProtected(i)||isRace(i))return;
+  n=round(n);
+  if(n>0&&n<5)n=5;
+  if(n<=0){
+   plans[i]={title:'Ruhetag',tag:'ERHOLUNG',km:0,pace:'–',mins:'frei',details:'Heute erholen.'};
+   return;
+  }
+  const was=p.km;
+  const isInterval=p.tag.includes('BAHN');
+  if(!was){
+   plans[i]={title:`${fmt(n)} km locker`,tag:'LOCKER',km:n,pace:'',mins:'',details:'Ruhiger Dauerlauf im Gesprächstempo.'};
+  }else{
+   p.km=n;
+   if(isInterval){
+    // Eine Intervall-Einheit ggf. um lockere Laufmeter verlängern, ohne Wiederholungen zu verändern.
+    const extra=round(n-was);
+    if(extra>0)p.details+=` Danach ${fmt(extra)} km sehr locker zusätzlich auslaufen.`;
+    if(extra<0)p.details+=` Den lockeren Anteil um ${fmt(-extra)} km reduzieren.`;
+   }else{
+    p.title=p.title.replace(/^\d+(?:[.,]\d+)?\s*km/,`${fmt(n)} km`);
+    if(!/^\d/.test(p.title))p.title=`${fmt(n)} km locker`;
+    p.details='Locker im Gesprächstempo laufen.'+(p.tag.includes('STABI')?' Anschließend Stabi.':'');
+   }
+  }
+  const q=plans[i];
+  if(!q.tag.includes('BAHN')){
+   const paceType=i===6?'long':q.tag.includes('REGENERATION')||q.tag.includes('VOR')||q.tag.includes('TAPER')?'recovery':'easy';
+   const v=easyPaces(addDays(start,i))[paceType];
+   q.pace=v.join('–')+' min/km';
+   q.mins=duration(n,v[0],v[1])+(q.tag.includes('STABI')?' + 15–20 Min Stabi':'');
+  }else{
+   // Intervalllauf: Minuten des extra lockeren Abschnitts ergänzen.
+   q.mins=q.mins;
+  }
+ }
+
+ // Mo und Mi bleiben fest frei von Laufkilometern, außer es ist dort selbst Wettkampf.
+ for(const i of [0,2]){
+  if(!isRace(i)&&plans[i].km>0){
+   plans[i]=i===0
+    ?{title:'Leichtathletik-Training',tag:'VEREIN',km:0,pace:'–',mins:'nach Vereinstraining',details:'Technik und Springen.'}
+    :{title:'Ruhetag',tag:'ERHOLUNG',km:0,pace:'–',mins:'frei',details:'Erholung.'};
+  }
+ }
+ // Keine Kilometerläufe unter 5 km (außer die fest freien Tage).
+ plans.forEach((p,i)=>{if(p.km>0&&!isRace(i)&&p.km<5)setDistance(i,5)});
+
+ // Große Rennen: zunächst unnötige andere Laufkilometer reduzieren.
+ if(active()>40){
+  for(const i of [5,4,3,6,1]){
+   if(isProtected(i)||isRace(i)||plans[i].km<=5)continue;
+   const excess=round(active()-40);
+   setDistance(i,Math.max(5,round(plans[i].km-excess)));
+   if(active()<=40)break;
+  }
+  if(active()>40){
+   for(const i of [5,4,6,3,1]){
+    if(isProtected(i)||isRace(i)||!plans[i].km)continue;
+    if(active()-plans[i].km>=35)setDistance(i,0);
+    if(active()<=40)break;
+   }
+  }
+ }
+
+ // Wenn der Umfang zu niedrig ist, bevorzugt lockere Kilometer auf verbleibende Lauftage verteilen.
+ // Ein oder zwei Tage vor einem Rennen werden keine großen Zusatzkilometer eingeplant.
+ if(active()<35){
+  const raceDistances=i=>eventIndices.map(j=>i-j);
+  const cap=i=>{
+   const shifts=raceDistances(i);
+   if(shifts.some(d=>Math.abs(d)===1))return 5;
+   if(shifts.some(d=>Math.abs(d)===2))return 9;
+   return i===1?13:i===3?15:i===4?10:i===5?10:15;
+  };
+  const choices=[3,6,1,4,5].filter(i=>!isProtected(i)&&!isRace(i));
+  const ranking=i=>{
+   let value={3:7,6:6,1:5,4:3,5:2}[i]||0;
+   if(eventIndices.length){
+    const dist=raceOffset(i);
+    if(dist===1)value-=7;
+    else if(dist===2)value-=3;
+    else if(dist>=4)value+=2;
+   }
+   return value;
+  };
+  choices.sort((a,b)=>ranking(b)-ranking(a));
+  // Einen freien Tag abseits des Wettkampfs lieber mit 5 lockeren km nutzen,
+  // statt einen einzelnen Lauf kurz vor dem Rennen übermäßig zu verlängern.
+  if(hasRace&&active()<32){
+   for(const i of choices){
+    if(active()>=32)break;
+    if(plans[i].km!==0||raceOffset(i)<2)continue;
+    if(active()+5<=40)setDistance(i,5);
+   }
+  }
+  // Dann vorhandene Läufe auffüllen; falls nötig einen weiteren lockeren Tag einsetzen.
+  let desired=37;
+  for(let pass=0;pass<2&&active()<35;pass++){
+   const order=pass===0?choices.filter(i=>plans[i].km>0):choices.filter(i=>plans[i].km===0);
+   if(pass===1){
+    for(const i of order){
+     if(active()>=desired)break;
+     if(desired-active()>=5&&cap(i)>=5&&active()+5<=40)setDistance(i,5);
+    }
+    continue;
+   }
+   // Die Kilometer gleichmäßig verteilen, statt einen 15-km-Lauf zu erzwingen.
+   for(let turn=0;turn<120&&active()<desired;turn++){
+    let changed=false;
+    for(const i of order){
+     if(active()>=desired)break;
+     if(cap(i)<=plans[i].km)continue;
+     const extra=Math.min(1,round(desired-active()),round(cap(i)-plans[i].km));
+     if(extra<=0)continue;
+     setDistance(i,round(plans[i].km+extra));changed=true;
+    }
+    if(!changed)break;
+   }
+  }
+  // Nur in sehr ungewöhnlichen Wochen: weitere, weiterhin lockere Kilometer zulassen.
+  if(active()<35){
+   for(const i of choices){
+    if(active()>=35)break;
+    if(!plans[i].km||raceOffset(i)<=1)continue;
+    const need=round(35-active());
+    const next=Math.min(16,round(plans[i].km+need));
+    if(next>plans[i].km)setDistance(i,next);
+   }
+  }
+ }
+ // Kompakte Auswertung, falls eine extreme Renndistanz die Vorgaben unmöglich macht.
+ plans.total=active();
+ plans.feasible=plans.total>=35&&plans.total<=40;
+ return plans;
+}
+function planDay(date){return weekPlans(monday(date))[(date.getDay()+6)%7]}
 
 
 function renderCards(){
@@ -268,8 +426,9 @@ function renderWeek(){
  const start=viewing,end=addDays(start,6),now=today();
  $('weekLabel').textContent=`${formatDate(start)} – ${formatDate(end)}`;
  let sum=0,raceMode=false;
+ const currentWeek=weekPlans(start);
  $('week').innerHTML=Array.from({length:7},(_,i)=>{
-  const date=addDays(start,i),p=planDay(date),simple=!p.race&&(i===0||i===2);
+  const date=addDays(start,i),p=currentWeek[i],simple=!p.race&&(i===0||i===2);
   sum+=p.km;if(p.race||nearbyRace(date)||priorRace(date))raceMode=true;
   const names=['Mo','Di','Mi','Do','Fr','Sa','So'];
   if(simple){return `<article class="day no-extra ${ymd(date)===ymd(now)?'today':''}"><div class="day-date"><b>${names[i]}</b><span>${formatDate(date)}</span></div><div class="day-title"><b>${i===0?'Leichtathletik-Training':'Ruhetag'}</b></div></article>`}
@@ -280,14 +439,14 @@ function renderWeek(){
  $('plannedKm').textContent=fmt(sum);
  $('referencePace').textContent=paceOnly(fiveKSeconds(end).seconds/5);
  $('progressFill').style.width=Math.min(100,100*sum/37.5)+'%';
- $('weekSummary').textContent=raceMode?'🏅 Vor dem Rennen weniger Belastung.':fiveKSeconds(end).source;
+ $('weekSummary').textContent=currentWeek.feasible?(raceMode?'🏅 35–40 km · vor dem Wettkampf überwiegend locker.':fiveKSeconds(end).source):'⚠️ Diese Wettkampfdistanz lässt sich nicht sinnvoll mit 35–40 km kombinieren.';
 }
 function formatRacePace(sec){return paceOnly(sec)+' min/km'}
 function renderRaceList(){
  const now=ymd(today());
  $('raceList').innerHTML=races.length?races.map((r,i)=>{
   const d=fromYmd(r.date),past=r.date<=now;
-  return `<div class="raceitem"><div class="raceheading"><div><b>🏅 ${safe(d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}))} · ${fmt(r.km)} km</b><span class="muted">${r.paceSec?'✓ '+safe(formatRacePace(r.paceSec)):past?'Ergebnis noch offen':'Vorbereitung beginnt 7 Tage davor'}</span></div><button class="ghost removeRace" data-index="${i}" aria-label="Wettkampf entfernen">✕</button></div>${past?`<details class="inline-more"><summary>${r.paceSec?'Pace ändern':'➕ Ergebnis eintragen'}</summary><form class="result-form" data-index="${i}"><div class="field"><label for="racePace${i}">Gelaufene Ø-Pace (min/km)</label><input id="racePace${i}" type="text" inputmode="numeric" required pattern="[0-9]{1,2}:[0-5][0-9]" placeholder="z. B. 5:02" value="${r.paceSec?safe(paceOnly(r.paceSec)):''}"></div><button class="primary" type="submit">Speichern</button>${r.paceSec?`<button class="ghost clearResult" type="button" data-index="${i}">Löschen</button>`:''}</form><span class="small resultError" role="status"></span></details>`:''}</div>`;
+  return `<div class="raceitem"><div class="raceheading"><div><b>🏅 ${safe(d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}))} · ${fmt(r.km)} km</b><span class="muted">${r.paceSec?'✓ '+safe(formatRacePace(r.paceSec)):past?'Ergebnis noch offen':'Vorbereitung beginnt 7 Tage davor'}</span></div><button class="ghost removeRace" data-index="${i}" aria-label="Wettkampf entfernen">✕</button></div>${past?`<form class="result-form" data-index="${i}"><div class="field"><label for="racePace${i}">Wettkampf-Pace (min/km)</label><input id="racePace${i}" type="text" inputmode="numeric" required pattern="[0-9]{1,2}:[0-5][0-9]" placeholder="z. B. 5:02" value="${r.paceSec?safe(paceOnly(r.paceSec)):''}"></div><button class="primary" type="submit">Speichern</button>${r.paceSec?`<button class="ghost clearResult" type="button" data-index="${i}">Löschen</button>`:''}</form><span class="small resultError" role="status"></span>`:''}</div>`;
  }).join(''):'<p class="small">Noch kein Wettkampf eingetragen.</p>';
  document.querySelectorAll('.removeRace').forEach(b=>b.addEventListener('click',()=>{races.splice(Number(b.dataset.index),1);writeStore('lc_races_v3',races);renderAll()}));
  document.querySelectorAll('.result-form').forEach(form=>form.addEventListener('submit',e=>{
@@ -311,11 +470,10 @@ function renderRaceList(){
 }
 function renderAll(){renderRaceList();renderCards();renderWeek();}
 $('raceDate').value=ymd(addDays(today(),12));
-$('raceDistance').addEventListener('change',()=>{$('customWrap').classList.toggle('hidden',$('raceDistance').value!=='custom')});
 $('raceForm').addEventListener('submit',e=>{
  e.preventDefault();const date=$('raceDate').value;
- const km=$('raceDistance').value==='custom'?Number($('customDistance').value):Number($('raceDistance').value);
- if(!fromYmd(date)||!Number.isFinite(km)||km<=0||km>100){$('raceMessage').textContent='Bitte Datum und Distanz prüfen.';return;}
+ const km=$('raceDistance').valueAsNumber;
+ if(!fromYmd(date)||!Number.isFinite(km)||km<1||km>21){$('raceMessage').textContent='Bitte eine Distanz zwischen 1 und 21 km eingeben.';return;}
  if(races.some(r=>r.date===date)){$('raceMessage').textContent='Für diesen Tag ist bereits ein Wettkampf eingetragen.';return;}
  races.push({date,km});races.sort((a,b)=>a.date.localeCompare(b.date));
  writeStore('lc_races_v3',races);viewing=monday(fromYmd(date));
