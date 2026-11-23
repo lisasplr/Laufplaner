@@ -268,6 +268,32 @@ function rawPlanDay(date){
     p.pace=range.join('–')+' min/km';
     p.mins=duration(p.km,range[0],range[1])+(p.tag.includes('STABI')?' + 15–20 Min Stabi':'');
   }
+  // FESTE WOCHENTAGE: Dienstag bleibt immer Bahntraining, Donnerstag bleibt Lauf + Stabi.
+  // In Wettkampfphasen reduzieren wir die Wiederholungen bzw. den Stabi-Umfang,
+  // ersetzen aber keine der beiden Einheiten durch einen normalen Lauf oder Ruhetag.
+  const upcomingFixed=nearbyRace(date),previousFixed=priorRace(date);
+  const lightFixed=Boolean(upcomingFixed||previousFixed);
+  if(dow===1 && !p.race){
+    p=intervalPlan(date,lightFixed);
+    if(lightFixed){
+      p.tag='BAHN · WETTKAMPFPHASE';
+      p.details+=' Wettkampfphase: weniger Wiederholungen, kontrolliert statt maximal.';
+    }
+  }
+  if(dow===3 && !p.race){
+    const km=lightFixed?6:8;
+    p=easyDay({
+      title:`${km} km locker + Stabi`,tag:'GRUNDLAGE + STABI',km,pace:'',mins:'',
+      details:lightFixed
+       ?'Lockerer Lauf im Gesprächstempo. Anschließend 10–15 Min leichte Stabi; keine schweren Beinübungen unmittelbar vor dem Wettkampf.'
+       :'Lockerer Dauerlauf im Gesprächstempo. Danach Aufwärmen und Stabi-Zirkel.'
+    },'easy',date);
+  }
+  if(dow===3 && p.race){
+    p.title+=' · Stabi';
+    p.details+=' Heute nur 5–10 Min leichte Rumpfstabilität, sofern du dich dafür gut fühlst.';
+    p.mins+=' + leichte Stabi (optional)';
+  }
   return p;
 }
 
@@ -279,32 +305,18 @@ function weekPlans(start){
  const plans=Array.from({length:7},(_,i)=>rawPlanDay(addDays(start,i)));
  const eventIndices=plans.map((p,i)=>p.race?i:-1).filter(i=>i>=0);
  const hasRace=eventIndices.length>0;
- // In Wettkampfwochen und den letzten sieben Tagen davor gibt es dienstags
- // bewusst keinen harten Intervallblock. Die vorhandenen Kilometer werden
- // als lockerer Lauf geplant; der Wochenumfang bleibt erhalten.
- const tuesday=addDays(start,1),upcoming=nearbyRace(tuesday),recent=priorRace(tuesday);
- if(!plans[1].race && (hasRace || upcoming)){
-  const afterRace=Boolean(recent),closeRace=Boolean(upcoming&&upcoming.delta<=3);
-  const km=afterRace||closeRace?5:6;
-  const paces=easyPaces(tuesday)[afterRace||closeRace?'recovery':'easy'];
-  plans[1]={
-    title:afterRace?`${km} km regenerativ`:`${km} km locker`,
-    tag:afterRace?'REGENERATION':'RENNVORBEREITUNG',
-    km,pace:paces.join('–')+' min/km',
-    mins:duration(km,paces[0],paces[1]),
-    details:afterRace
-      ?'Nach dem Wettkampf sehr locker laufen, nur wenn du dich erholt fühlst. Keine Intervalle.'
-      :'Lockerer Dauerlauf ohne Intervalle. Am Wettkampf zählt die Frische.'
-  };
- }
+ // Intervall- und Stabi-Tage werden bereits in rawPlanDay festgelegt.
+ // Diese Einheiten dürfen beim Wochenabgleich nicht in normale Läufe umgewandelt werden.
  const isProtected=i=>(i===0||i===2)&&!plans[i].race;
  const isRace=i=>Boolean(plans[i].race);
+ const isRequiredRun=i=>(i===1||i===3)&&!plans[i].race;
  const raceOffset=i=>eventIndices.length?Math.min(...eventIndices.map(r=>Math.abs(r-i))):99;
  const active=()=>round(plans.reduce((acc,p)=>acc+p.km,0));
 
  function setDistance(i,n){
   const p=plans[i];if(isProtected(i)||isRace(i))return;
   n=round(n);
+  if(isRequiredRun(i)&&n<=0)return;
   if(n>0&&n<5)n=5;
   if(n<=0){
    plans[i]={title:'Ruhetag',tag:'ERHOLUNG',km:0,pace:'–',mins:'frei',details:'Heute erholen.'};
@@ -317,14 +329,23 @@ function weekPlans(start){
   }else{
    p.km=n;
    if(isInterval){
-    // Eine Intervall-Einheit ggf. um lockere Laufmeter verlängern, ohne Wiederholungen zu verändern.
+    // Intervallwiederholungen bleiben gleich. Nur der lockere Anteil wird angepasst.
     const extra=round(n-was);
     if(extra>0)p.details+=` Danach ${fmt(extra)} km sehr locker zusätzlich auslaufen.`;
     if(extra<0)p.details+=` Den lockeren Anteil um ${fmt(-extra)} km reduzieren.`;
+    // Die angegebene Gesamtdauer muss zu den zusätzlich geplanten Lauf-km passen.
+    const previousDuration=p.mins.match(/^ca\. (\d+)–(\d+) Min/);
+    if(previousDuration){
+      const paceRange=easyPaces(addDays(start,i)).easy.map(secFromPace);
+      const low=Math.max(1,Math.round(Number(previousDuration[1])+extra*paceRange[0]/60));
+      const high=Math.max(low,Math.round(Number(previousDuration[2])+extra*paceRange[1]/60));
+      p.mins=`ca. ${low}–${high} Min inkl. Lauf-ABC`;
+    }
    }else{
-    p.title=p.title.replace(/^\d+(?:[.,]\d+)?\s*km/,`${fmt(n)} km`);
+    p.title=i===3?`${fmt(n)} km locker + Stabi`:p.title.replace(/^\d+(?:[.,]\d+)?\s*km/,`${fmt(n)} km`);
     if(!/^\d/.test(p.title))p.title=`${fmt(n)} km locker`;
-    p.details='Locker im Gesprächstempo laufen.'+(p.tag.includes('STABI')?' Anschließend Stabi.':'');
+    p.details='Locker im Gesprächstempo laufen.'+(i===3?' Anschließend Stabi.':'');
+    if(i===3&&!p.tag.includes('STABI'))p.tag='GRUNDLAGE + STABI';
    }
   }
   const q=plans[i];
@@ -361,7 +382,7 @@ function weekPlans(start){
   if(active()>40){
    for(const i of [5,4,6,3,1]){
     if(isProtected(i)||isRace(i)||!plans[i].km)continue;
-    if(active()-plans[i].km>=35)setDistance(i,0);
+    if(!isRequiredRun(i)&&active()-plans[i].km>=35)setDistance(i,0);
     if(active()<=40)break;
    }
   }
@@ -372,7 +393,7 @@ function weekPlans(start){
  if(active()<35){
   const raceDistances=i=>eventIndices.map(j=>i-j);
   const cap=i=>{
-   if(i===1 && (hasRace || upcoming))return upcoming&&upcoming.delta<=3?7:9;
+   if(i===1 && (hasRace || nearbyRace(addDays(start,1))))return 9;
    const shifts=raceDistances(i);
    if(shifts.some(d=>Math.abs(d)===1))return 5;
    if(shifts.some(d=>Math.abs(d)===2))return 9;
