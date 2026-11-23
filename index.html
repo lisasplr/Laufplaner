@@ -95,6 +95,16 @@ main{padding:10px}.card{padding:13px;margin-bottom:10px;border-radius:17px}h2{fo
 .race-fields .field{min-width:0;width:100%;max-width:100%}
 .race-fields input{display:block;box-sizing:border-box;min-width:0;max-width:100%;width:100%;font-size:16px}
 @media(min-width:680px){.race-fields{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Datumsfeld auf iPhone und schmalen Android-Geräten: native Mindestbreite einfangen. */
+#wettkaempfe, #raceForm, .race-fields, .race-fields .field{min-width:0;max-width:100%;box-sizing:border-box}
+.race-fields{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:12px}
+.race-fields .field{width:100%;overflow:hidden;display:block}
+.race-fields input{width:100%;max-width:100%;min-width:0;display:block;box-sizing:border-box;font-size:16px}
+#raceDate{width:min(100%,260px);max-width:100%;min-width:0;position:relative;overflow:hidden;padding-left:10px;padding-right:7px;-webkit-appearance:none;appearance:none}
+#raceDate::-webkit-datetime-edit{display:inline-block;min-width:0;padding:0;white-space:nowrap}
+#raceDate::-webkit-calendar-picker-indicator{margin-left:0;max-width:20px;flex-shrink:0}
+@media(min-width:680px){.race-fields{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 </style>
 </head>
 <body>
@@ -269,6 +279,24 @@ function weekPlans(start){
  const plans=Array.from({length:7},(_,i)=>rawPlanDay(addDays(start,i)));
  const eventIndices=plans.map((p,i)=>p.race?i:-1).filter(i=>i>=0);
  const hasRace=eventIndices.length>0;
+ // In Wettkampfwochen und den letzten sieben Tagen davor gibt es dienstags
+ // bewusst keinen harten Intervallblock. Die vorhandenen Kilometer werden
+ // als lockerer Lauf geplant; der Wochenumfang bleibt erhalten.
+ const tuesday=addDays(start,1),upcoming=nearbyRace(tuesday),recent=priorRace(tuesday);
+ if(!plans[1].race && (hasRace || upcoming)){
+  const afterRace=Boolean(recent),closeRace=Boolean(upcoming&&upcoming.delta<=3);
+  const km=afterRace||closeRace?5:6;
+  const paces=easyPaces(tuesday)[afterRace||closeRace?'recovery':'easy'];
+  plans[1]={
+    title:afterRace?`${km} km regenerativ`:`${km} km locker`,
+    tag:afterRace?'REGENERATION':'RENNVORBEREITUNG',
+    km,pace:paces.join('–')+' min/km',
+    mins:duration(km,paces[0],paces[1]),
+    details:afterRace
+      ?'Nach dem Wettkampf sehr locker laufen, nur wenn du dich erholt fühlst. Keine Intervalle.'
+      :'Lockerer Dauerlauf ohne Intervalle. Am Wettkampf zählt die Frische.'
+  };
+ }
  const isProtected=i=>(i===0||i===2)&&!plans[i].race;
  const isRace=i=>Boolean(plans[i].race);
  const raceOffset=i=>eventIndices.length?Math.min(...eventIndices.map(r=>Math.abs(r-i))):99;
@@ -344,6 +372,7 @@ function weekPlans(start){
  if(active()<35){
   const raceDistances=i=>eventIndices.map(j=>i-j);
   const cap=i=>{
+   if(i===1 && (hasRace || upcoming))return upcoming&&upcoming.delta<=3?7:9;
    const shifts=raceDistances(i);
    if(shifts.some(d=>Math.abs(d)===1))return 5;
    if(shifts.some(d=>Math.abs(d)===2))return 9;
