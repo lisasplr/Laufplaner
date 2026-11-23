@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#b94aa8">
+<title>Laufcoach 💗 | 35–40 km</title>
+<style>
+:root{--bg:#fff6fc;--card:#fff;--ink:#3b2440;--muted:#806d86;--line:#eed9ec;--rose:#dc56ae;--purple:#8855c5;--pale:#faeaf8;--lav:#f0e7ff;--green:#17895d;--gold:#a47621;--shadow:0 12px 32px rgba(103,48,104,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(#fff7fc,#f9f4ff);color:var(--ink);font:14px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif;padding-bottom:80px}.wrap{max-width:850px;margin:auto}header{background:linear-gradient(120deg,#dd5bab,#9859ce);color:white;padding:24px 17px 30px;border-radius:0 0 25px 25px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.16em;font-weight:900;color:#ffedf9}h1{font-size:clamp(28px,8vw,40px);margin:6px 0;line-height:1.1}header p{margin:0;font-size:13px;color:#fff4fd;max-width:530px}.hero-stat{display:flex;gap:8px;margin-top:15px}.hero-stat span{display:block;border-radius:999px;background:#ffffff25;border:1px solid #ffffff5c;padding:7px 11px;font-size:11px;font-weight:800}main{padding:14px}.card{border:1px solid var(--line);background:var(--card);border-radius:19px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px}h2{font-size:18px;line-height:1.2;margin:0 0 11px}h3{font-size:15px;margin:15px 0 8px}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}.eyeline{font-size:11px;font-weight:900;letter-spacing:.07em;color:#a04797;text-transform:uppercase}.flex{display:flex;align-items:center;justify-content:space-between;gap:10px}.topcards{display:grid;grid-template-columns:1fr 1fr;gap:9px}.nextcard{background:linear-gradient(135deg,#fff0fa,#f0e8ff);border:1px solid #ebcee8;border-radius:17px;padding:12px;min-width:0}.nextcard h3{margin:5px 0;font-size:18px;line-height:1.12}.nextcard p{margin:5px 0 8px;font-size:12px;color:#745e7c}.nextcard .pace{font-weight:800;color:#8c428b;font-size:11px}.pill{display:inline-block;padding:4px 8px;border-radius:99px;background:#fff;color:#963d8b;font-size:10px;font-weight:850;border:1px solid #efdcf1}.hint{background:linear-gradient(135deg,#fff1fa,#f2eaff);border-radius:13px;padding:11px 12px;color:#724b79;font-size:12px;margin-top:11px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field label{display:block;font-size:11px;color:var(--muted);font-weight:850;margin-bottom:4px}input,select{font:inherit;color:var(--ink);padding:11px;border:1px solid #e5cee6;border-radius:11px;background:white;width:100%;min-width:0}input:focus,select:focus,button:focus-visible{outline:3px solid #d8b3ef;outline-offset:2px}button{border:0;cursor:pointer;border-radius:11px;padding:10px 12px;font:800 12px system-ui;touch-action:manipulation}button.primary{background:linear-gradient(115deg,var(--rose),var(--purple));color:#fff}button.secondary{background:#f4eafd;color:#8746a3}button.ghost{background:white;color:#884392;border:1px solid var(--line)}button:disabled{opacity:.6;cursor:not-allowed}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.error{color:#b22c6b}.good{color:var(--green)}.races{display:grid;gap:8px;margin-top:11px}.raceitem{display:flex;align-items:center;justify-content:space-between;gap:7px;border:1px solid var(--line);border-radius:12px;padding:9px 10px;font-size:12px}.raceitem b{display:block}.raceitem button{padding:7px 9px}.week-nav{display:flex;gap:8px;justify-content:space-between;align-items:center;margin:10px 0}.week-nav b{font-size:13px}.week-nav button{padding:8px 11px}.week{display:grid;gap:8px}.day{display:grid;grid-template-columns:61px minmax(0,1fr);gap:9px;padding:10px;border:1px solid var(--line);border-radius:14px}.day.today{border:2px solid #d884c0;background:#fff5fc}.day-date b{display:block;font-size:12px}.day-date span{font-size:11px;color:var(--muted)}.tag{display:inline-block;background:var(--pale);border-radius:99px;color:#963e8e;font-size:10px;font-weight:850;letter-spacing:.03em;padding:3px 7px}.day-title{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:5px;margin-top:4px}.day-title b{font-size:13px}.day-title strong{color:#a13f91;font-size:13px;white-space:nowrap}.day p{font-size:12px;color:var(--muted);margin:5px 0}.numbers{font-size:12px;font-weight:800;color:#79507b}.actual{border-radius:9px;background:#f4edff;padding:6px 8px;margin-top:7px;font-size:11px;color:#6e4f7d}.actual.ok{background:#eaf8f0;color:#146d4c}.actual.warn{background:#fff3e4;color:#8c641d}.actual.none{background:#faf4fa;color:#92758c}.weeklystats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.stat{padding:10px 6px;text-align:center;border-radius:12px;background:#fff3fc}.stat b{display:block;font-size:19px;color:#93468d}.stat span{font-size:10px;color:var(--muted)}.progress{height:9px;background:#f2e3ef;border-radius:99px;overflow:hidden;margin-top:10px}.progress div{height:100%;background:linear-gradient(90deg,var(--rose),var(--purple));width:0;transition:width .3s}.filearea{border:1px dashed #c991c3;background:#fdf6fc;padding:13px;border-radius:13px}.filearea input{padding:8px;background:#fff}.dataresults{margin-top:12px}.datagrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.datachip{padding:10px;background:#faf0fc;border-radius:11px}.datachip b{display:block;font-size:18px}.datachip span{font-size:11px;color:var(--muted)}.actlist{display:grid;gap:6px;margin-top:9px}.actitem{border-bottom:1px solid #f1e5ef;padding-bottom:7px;font-size:12px}.actitem b{font-size:12px}.actitem p{margin:2px 0;color:var(--muted)}.routelist{display:grid;gap:7px}.routine{border:1px solid var(--line);border-radius:13px;padding:10px}.routine b{font-size:13px}.routine p{font-size:12px;color:var(--muted);margin:4px 0}.exercisegrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.exercise{border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff}.art{height:92px;background:linear-gradient(120deg,#fff0fa,#eee6ff);display:flex;align-items:center;justify-content:center}.art svg{width:140px;max-width:100%;height:85px}.exbody{padding:10px}.exbody b{font-size:13px;display:block}.exbody p{font-size:11px;margin:4px 0;color:var(--muted)}.exbody .instruction{color:#674d72}.exbuttons{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.exbuttons button{font-size:11px;padding:7px 8px}.timer{text-align:center;font-size:24px;font-weight:900;color:#9c4a95;font-variant-numeric:tabular-nums;margin:7px 0}.tick{font-size:11px;color:var(--green)}footer{font-size:11px;color:var(--muted);text-align:center;margin-top:15px}.bottomnav{position:fixed;bottom:0;left:0;right:0;background:#fffefef7;backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;justify-content:space-around;gap:4px;padding:8px 7px max(8px,env(safe-area-inset-bottom));z-index:10}.bottomnav a{font-size:11px;font-weight:800;color:#93498f;text-decoration:none;padding:8px;border-radius:10px}.bottomnav a:focus,.bottomnav a:hover{background:#f5eafb}.hidden{display:none!important}@media(max-width:450px){.fields{grid-template-columns:1fr 1fr}.exercisegrid{grid-template-columns:1fr}.art{height:96px}.nextcard h3{font-size:16px}.nextcard{padding:11px}.stat b{font-size:18px}}@media(max-width:340px){.topcards,.fields{grid-template-columns:1fr}}@media(min-width:680px){main{padding:18px}.card{padding:21px}}@media print{.bottomnav,.actions,.filearea,button{display:none!important}body{padding:0}header{background:#eee;color:#333}}
+
+/* Kompakte Handy-Ansicht: Anleitungen nur bei Bedarf aufklappen */
+header{padding:18px 16px 20px}header h1{font-size:28px;margin:4px 0 8px}header .hero-stat{margin-top:10px}
+main{padding:10px}.card{padding:13px;margin-bottom:10px;border-radius:17px}h2{font-size:17px;margin-bottom:8px}
+.nextcard{padding:10px;min-height:112px}.nextcard h3{font-size:15px;margin:4px 0 8px}.nextcard p{margin:2px 0}
+.hint{font-size:12px;padding:9px 10px;margin-top:8px}.week{gap:6px}.day{padding:9px}.day p{margin:5px 0}
+.weeklystats{margin-top:8px}.dataresults{margin-top:9px}.bottomnav{box-shadow:0 -5px 20px rgba(88,45,92,.07)}
+.inline-more{margin-top:6px}.inline-more summary,.more-section summary{cursor:pointer;font-size:11px;font-weight:800;color:#98509c;padding:5px 0;list-style:revert}
+.inline-more p{font-size:12px;line-height:1.5;margin:6px 0 2px}.more-section{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}.more-section summary{font-size:13px}
+.data-mini{padding:9px 10px;border-radius:12px;background:#f9edfa;color:#8c458c;font-size:12px;font-weight:800}
+.compact-status{background:#faf5fd}
+@media(max-width:450px){.topcards{grid-template-columns:1fr 1fr}.nextcard .pace{font-size:11px}}
+
+/* Geführter Workout-Modus, optimiert für schmale Smartphone-Displays */
+.workout-start{width:100%;padding:14px;font-size:15px;letter-spacing:.01em;margin-top:10px}
+.workout-overlay{position:fixed;inset:0;background:rgba(48,22,60,.55);z-index:100;display:flex;align-items:center;justify-content:center;padding:12px}
+.workout-overlay[hidden]{display:none}
+.workout-shell{width:min(100%,510px);max-height:min(94dvh,900px);height:auto;overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(165deg,#fff9fd,#f8f0ff);border:1px solid #efd5e9;border-radius:23px;box-shadow:0 24px 80px rgba(65,23,72,.24);padding:18px 17px 20px;display:flex;flex-direction:column;gap:10px}
+.workout-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.workout-phase{font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:#944390}
+.workout-close{font-size:24px;line-height:1;background:#f8e7f4;color:#91488e;width:40px;height:40px;padding:0;border-radius:12px}
+.workout-progress{background:#eeddec;height:8px;overflow:hidden;border-radius:99px}
+.workout-progress span{display:block;height:100%;background:linear-gradient(90deg,#ed67ac,#8553c9);transition:width .2s;width:0}
+.workout-counter{font-size:12px;color:#806d86}
+.workout-visual{height:126px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:linear-gradient(130deg,#fce6f4,#eee4ff);overflow:hidden}
+.workout-visual svg{width:230px;height:116px}
+.workout-visual .bigemoji{font-size:64px}
+.workout-title{font-size:clamp(22px,6vw,30px);line-height:1.1;margin:1px 0;font-weight:900}
+.workout-meta{font-weight:850;color:#a14791;font-size:14px}
+.workout-instruction{font-size:14px;color:#59445f;line-height:1.5;margin:0;min-height:44px}
+.workout-tip{font-size:12px;color:#786182;background:#fff;border:1px solid #eed8ee;padding:10px 12px;border-radius:12px;line-height:1.45}
+.workout-clock{font-size:clamp(49px,13vw,70px);line-height:1.05;font-variant-numeric:tabular-nums;font-weight:900;text-align:center;color:#963e91;letter-spacing:-.04em;margin-top:0}
+.workout-clock-label{text-align:center;color:#816988;font-size:12px;font-weight:700;margin-top:-8px}
+.workout-main-buttons{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:4px}
+.workout-main-buttons button{min-height:50px;font-size:15px;padding:11px 14px}
+.workout-other-buttons{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.workout-other-buttons button{font-size:12px}
+.workout-hidden{display:none!important}
+@media(max-width:540px){.workout-overlay{padding:0;align-items:stretch}.workout-shell{width:100%;max-width:none;height:100dvh;max-height:none;border-radius:0;box-shadow:none;justify-content:flex-start;padding:calc(12px + env(safe-area-inset-top)) 17px calc(15px + env(safe-area-inset-bottom))}.workout-visual{height:min(24vh,144px)}.workout-visual svg{height:100%;width:100%}.workout-title{font-size:25px}.workout-clock{font-size:60px}.workout-main-buttons{margin-top:auto}}
+@media(max-height:690px){.workout-shell{gap:6px}.workout-visual{height:100px}.workout-instruction{min-height:0}.workout-clock{font-size:48px}.workout-tip{padding:8px}}
+@media(prefers-reduced-motion:reduce){.workout-progress span{transition:none}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="eyebrow">dein persönlicher laufcoach</div><h1>Dein Laufcoach 💗</h1><div class="hero-stat"><span>🏃‍♀️ 35–40 km / Woche</span><span>💜 Mittwoch frei</span></div></header>
+<main>
+<section class="card" id="start"><div class="flex"><h2>Heute &amp; morgen ✨</h2><span class="pill">Dein Tagesplan</span></div><div class="topcards"><article class="nextcard" id="todayCard"></article><article class="nextcard" id="tomorrowCard"></article></div><div class="hint" id="motivation">Du schaffst das! 💜</div></section>
+<section class="card" id="wettkaempfe"><div class="flex"><h2>Wettkämpfe 🏅</h2><span class="pill">Datum + Distanz</span></div><form id="raceForm"><div class="fields"><div class="field"><label for="raceDate">Wettkampftag</label><input id="raceDate" type="date" required></div><div class="field"><label for="raceDistance">Distanz</label><select id="raceDistance"><option value="5">5 km</option><option value="10">10 km</option><option value="3">3.000 m</option><option value="1.5">1.500 m</option><option value="0.8">800 m</option><option value="custom">Andere Distanz</option></select></div></div><div class="field hidden" id="customWrap" style="margin-top:9px"><label for="customDistance">Distanz in km</label><input id="customDistance" type="number" inputmode="decimal" min="0.1" max="100" step="0.1" placeholder="z. B. 4,2"></div><div class="actions"><button class="primary" type="submit">+ Speichern</button><button type="button" class="secondary" id="showRaceWeek">Zur Wettkampfwoche</button></div><div class="small" id="raceMessage" role="status"></div></form><div class="races" id="raceList"></div></section>
+<section class="card" id="intervalle"><div class="flex"><h2>Dienstag: Intervalle ⚡</h2><span class="pill">jede Woche neu</span></div><div id="intervalPreview" class="hint">Intervalle werden berechnet …</div></section>
+<section class="card" id="wochenplan"><div class="flex"><h2>Wochenplan 🌸</h2><span class="pill" id="weekType">Normalwoche</span></div><div class="week-nav"><button class="secondary" id="prevWeek" aria-label="Vorherige Woche">‹</button><b id="weekLabel">–</b><button class="secondary" id="nextWeek" aria-label="Nächste Woche">›</button><button class="ghost" id="thisWeek">Heute</button></div><div class="week" id="week"></div><div class="weeklystats"><div class="stat"><b id="plannedKm">–</b><span>Geplant km</span></div><div class="stat"><b id="actualKm">–</b><span>Erfasst km</span></div><div class="stat"><b id="goalKm">35–40</b><span>Zielbereich km</span></div></div><div class="progress"><div id="progressFill"></div></div><p class="small" id="weekSummary"></p><div class="small" id="trainingNote" style="margin-top:8px">Tempo wird aus deinen Läufen angepasst.</div></section>
+<section class="card" id="garmin">
+<div class="flex"><h2>Garmin &amp; Tempo ⌚</h2><span class="pill" id="garminBadge">Nicht verbunden</span></div>
+<div class="data-mini" id="paceSource">Tempo-Basis: 5 km in 25:30.</div>
+<div class="hint compact-status" id="garminStatus" role="status">Garmin noch nicht synchronisiert.</div>
+<div class="actions"><button class="primary" id="syncGarmin" type="button">⌚ Garmin synchronisieren</button><button class="ghost" id="recheckGarmin" type="button">Prüfen</button></div>
+<details class="more-section"><summary>📥 Aktivitäten importieren / Tempo einstellen</summary>
+<div class="filearea" style="margin-top:12px"><label class="eyeline" for="activityFile">Trainingsdateien (CSV / TCX / GPX)</label><input accept=".csv,.gpx,.tcx,text/csv,application/gpx+xml,application/xml" id="activityFile" multiple type="file"></div>
+<div class="small" id="importMessage" role="status"></div>
+<div class="fields" style="margin-top:12px"><div class="field"><label for="fiveKTime">5-km-Zeit (MM:SS)</label><input id="fiveKTime" value="25:30" inputmode="numeric" placeholder="25:30" pattern="[0-9]{1,2}:[0-5][0-9]"></div><div class="field"><label for="paceMode">Tempo-Basis</label><select id="paceMode"><option value="auto">Aus Aktivitäten</option><option value="manual">Manuell</option></select></div></div>
+<div class="actions"><button class="secondary" id="savePace">Tempo aktualisieren</button><button class="ghost" id="clearActivities">Aktivitäten löschen</button></div>
+<p class="small">Eine öffentliche HTML-Datei schützt keinen API-Schlüssel. Direkter Garmin-Zugriff kann im Browser durch CORS scheitern. Importierte Läufe werden nur auf diesem Gerät gespeichert.</p>
+</details>
+<div class="dataresults" id="dataResults"></div>
+</section>
+<section class="card" id="stabi"><div class="flex"><h2>Kraft &amp; Stabi 💪</h2><span class="pill">Do · ca. 20 Min</span></div><button class="primary workout-start" id="guidedStart" type="button">▶ Stabi-Training starten</button><p class="small" style="margin:7px 0 0">Aufwärmen → Übungen → Pausen. Alles Schritt für Schritt.</p><details class="more-section"><summary>Alle Übungen vorher ansehen</summary><h3>1. Aufwärmen · 5 Min</h3><div class="routelist" id="warmup"></div><h3>2. Stabi · 15–20 Min</h3><p class="small">2 Sätze je Übung · 30–45 Sek. Pause.</p><div class="exercisegrid" id="exercises"></div></details></section>
+<footer>Hör auf deinen Körper. Wettkämpfe und Leichtathletik zählen als Belastung – Pausen auch. 💜</footer>
+</main>
+</div>
+
+<div id="guidedWorkout" class="workout-overlay" hidden>
+  <div class="workout-shell" role="dialog" aria-modal="true" aria-labelledby="guidedTitle" tabindex="-1">
+    <div class="workout-top"><div class="workout-phase" id="guidedPhase">Aufwärmen</div><button class="workout-close" id="guidedClose" type="button" aria-label="Training beenden">×</button></div>
+    <div class="workout-progress"><span id="guidedProgress"></span></div>
+    <div class="workout-counter" id="guidedCounter">1 von 20</div>
+    <div class="workout-visual" id="guidedVisual" aria-hidden="true">💗</div>
+    <h2 id="guidedTitle" class="workout-title">Los geht’s!</h2>
+    <div id="guidedMeta" class="workout-meta">Aufwärmen</div>
+    <p id="guidedText" class="workout-instruction"></p>
+    <div id="guidedTip" class="workout-tip"></div>
+    <div class="workout-clock" id="guidedClock" aria-live="off">–</div>
+    <div class="workout-clock-label" id="guidedClockLabel">Bereit?</div>
+    <div class="workout-main-buttons"><button class="primary" id="guidedNext" type="button">Satz geschafft ✓</button><button class="secondary" id="guidedPause" type="button">Pause</button></div>
+    <div class="workout-other-buttons"><button class="ghost" id="guidedBack" type="button">‹ Zurück</button><button class="ghost" id="guidedSkip" type="button">Überspringen ›</button></div>
+  </div>
+</div>
+
+<nav class="bottomnav" aria-label="Bereiche"><a href="#start">🏠 Heute</a><a href="#wettkaempfe">🏅 Rennen</a><a href="#wochenplan">📅 Plan</a><a href="#garmin">⌚ Garmin</a><a href="#stabi">💪 Stabi</a></nav>
+<script>
+(()=>{
+'use strict';
+/* ====================================================================
+   GARMIN-SCHLÜSSEL HIER EINTRAGEN (ohne die Anführungszeichen zu löschen).
+   ACHTUNG: GitHub Pages ist öffentlich. Jeder kann diesen Schlüssel aus
+   einer veröffentlichten index.html lesen. Nicht sicher für Livebetrieb!
+   Die Garmin-API könnte Anfragen aus Browsern außerdem mit CORS blockieren.
+   ==================================================================== */
+const GARMIN_API_KEY = 'pglt=129&q=GCDC_a0b37867-5a69-4a69-b5b1-2737ebb10df0.42310734-9ffd-4345-bdbb-bb8a8aeda335.h3h7vzzZQO%2BdyQOz%2BGnLvJ2EGZdvurtU1975Hjc4U80.3098266999&cvid=e72f633b7b98428faf105cb0701e6c82&gs_lcrp=EgRlZGdlKgYIABBFGDkyBggAEEUYOdIBCDIwNDZqMGo3qAIAsAIA&FORM=ANNTA1&PC=LCTS';
+const GARMIN_BASE = 'https://personal.connectapi.garmin.com';
+const TOKEN_URL = GARMIN_BASE + '/personalapitoken-service/personal-api/personal-api-key/token';
+const ACTIVITIES_URL = GARMIN_BASE + '/activitylist-service/activities/search/activities';
+const $=id=>document.getElementById(id), DAY=86400000;
+const today=()=>{let d=new Date();d.setHours(12,0,0,0);return d};
+const ymd=d=>{const x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`};
+const fromYmd=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(s||''))return null;const d=new Date(s+'T12:00:00');return Number.isNaN(d.getTime())?null:d};
+const monday=d=>{let x=new Date(d);x.setHours(12,0,0,0);x.setDate(x.getDate()-(x.getDay()+6)%7);return x};
+const addDays=(d,n)=>{let x=new Date(d);x.setDate(x.getDate()+n);return x};
+const diff=(a,b)=>Math.round((new Date(a).setHours(12,0,0,0)-new Date(b).setHours(12,0,0,0))/DAY);
+const formatDate=d=>d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit'});
+const formatLong=d=>d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'short'});
+const round=(v,n=1)=>Number(v.toFixed(n));
+const fmt=v=>Number(v).toLocaleString('de-DE',{maximumFractionDigits:1});
+const safe=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function readStore(key,def){try{const v=JSON.parse(localStorage.getItem(key));return v??def}catch{return def}}
+function writeStore(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch{return false}}
+let races=readStore('lc_races_v3',[]).filter(r=>r&&/^\d{4}-\d{2}-\d{2}$/.test(r.date)&&Number(r.km)>0).sort((a,b)=>a.date.localeCompare(b.date));
+let activities=readStore('lc_activities_v3',[]).filter(a=>a&&a.date&&Number(a.km)>0);
+let viewing=monday(today());
+let manual=readStore('lc_manual_v3',{});
+let currentPaceSettings=readStore('lc_pace_settings_v4',{five:'25:30',mode:'auto'});
+const paceText=(lo,hi)=>lo===null?'nach Tagesform':`${lo}–${hi} min/km`;
+function duration(km,lo,hi){if(!km||!lo)return '–';const p=s=>{let v=s.split(':').map(Number);return v[0]+v[1]/60};const a=Math.round(km*p(lo)),b=Math.round(km*p(hi));return a===b?`${a} Min`:`${a}–${b} Min`}
+function matches(r,date){return r.date===ymd(date)}
+function nearbyRace(date){const after=races.map(r=>({...r,delta:diff(fromYmd(r.date),date)})).filter(x=>x.delta>=0&&x.delta<=7).sort((a,b)=>a.delta-b.delta)[0];return after||null}
+function priorRace(date){return races.map(r=>({...r,delta:diff(date,fromYmd(r.date))})).filter(x=>x.delta>=1&&x.delta<=2).sort((a,b)=>a.delta-b.delta)[0]||null}
+const INTERVAL_LIBRARY=[
+ {name:'13 × 200 m',reps:[200,200,200,200,200,200,200,200,200,200,200,200,200],recover:200,warm:1.5,cool:1.5,factor:.93},
+ {name:'8 × 400 m',reps:[400,400,400,400,400,400,400,400],recover:200,warm:1.8,cool:1.6,factor:.98},
+ {name:'5 × 600 m',reps:[600,600,600,600,600],recover:300,warm:2,cool:1.8,factor:1.00},
+ {name:'4 × 800 m',reps:[800,800,800,800],recover:400,warm:1.8,cool:1.8,factor:1.02},
+ {name:'3 × 1.000 m',reps:[1000,1000,1000],recover:400,warm:2,cool:2.2,factor:1.04},
+ {name:'10 × 300 m',reps:[300,300,300,300,300,300,300,300,300,300],recover:200,warm:1.6,cool:1.6,factor:.96},
+ {name:'Pyramide: 200–400–600–800–600–400–200 m',reps:[200,400,600,800,600,400,200],recover:200,warm:1.8,cool:1.8,factor:.99}
+];
+function secondsText(t){let n=Math.round(t),m=Math.floor(n/60),sec=n%60;return m?`${m}:${String(sec).padStart(2,'0')} min`:`${sec} s`}
+function paceOnly(t){let n=Math.round(t),m=Math.floor(n/60),sec=n%60;return `${m}:${String(sec).padStart(2,'0')}`}
+function secFromPace(p){let z=p.split(':').map(Number);return z[0]*60+z[1]}
+function race5kFromGarmin(){
+ const cutoff=addDays(today(),-150),recent=activities.filter(a=>{
+   const d=fromYmd(a.date);if(!d||d<cutoff||d>today()||a.km<4.85||a.km>5.15||a.seconds<900||a.seconds>2700)return false;
+   const raceByCalendar=races.some(r=>r.date===a.date&&Number(r.km)>=4.8&&Number(r.km)<=5.2);
+   return Boolean(a.race||raceByCalendar);
+ });
+ if(!recent.length)return null;
+ const fastest=recent.reduce((best,a)=>a.seconds<best.seconds?a:best);
+ return {seconds:Math.round(fastest.seconds*5/fastest.km),date:fastest.date};
+}
+// Typical pace from RECENT ORDINARY runs, not workouts or races.
+// Includes user-imported Garmin exports and successfully synchronized activities.
+function normalPaceFromActivities(){
+ const minDate=addDays(today(),-70),valid=[];
+ const excluded=/intervall|interval|tempo|fartlek|schwelle|threshold|sprint|pyramide|wettkampf|rennen|race|competition|bestzeit|personal best|track|bahntraining|zeitlauf|5k test|strides|hills|berginterval|parkrun/i;
+ for(const a of activities){
+  const d=fromYmd(a.date),km=Number(a.km),secs=Number(a.seconds);
+  if(!a.run||!d||d<minDate||d>today()||km<3||km>22||secs<12*60||a.race)continue;
+  if(races.some(r=>r.date===a.date)||excluded.test(String(a.title||'')))continue;
+  const pace=secs/km;
+  if(!Number.isFinite(pace)||pace<315||pace>600)continue; // 5:15–10:00 min/km, sanity check
+  valid.push({pace,km,date:a.date});
+ }
+ if(valid.length<3)return null;
+ const median=arr=>{const z=[...arr].sort((a,b)=>a-b);return z.length%2?z[(z.length-1)/2]:(z[z.length/2-1]+z[z.length/2])/2;};
+ const firstMedian=median(valid.map(a=>a.pace));
+ const trimmed=valid.filter(a=>Math.abs(a.pace-firstMedian)<=50);
+ const robust=trimmed.length>=3?trimmed:valid;
+ return {seconds:Math.round(median(robust.map(a=>a.pace))),count:robust.length};
+}
+function fiveKSeconds(){
+ const saved=currentPaceSettings;
+ let raw=String(saved.five||'25:30');if(!/^\d{1,2}:[0-5]\d$/.test(raw))raw='25:30';
+ let [min,sec]=raw.split(':').map(Number),manualSec=min*60+sec;
+ if(manualSec<900||manualSec>3600)manualSec=1530;
+ const garmin=race5kFromGarmin();
+  if(saved.mode==='auto'&&garmin){return {seconds:garmin.seconds,source:`5-km-Wettkampf ${garmin.date}`}}
+  const normal=normalPaceFromActivities();
+  if(saved.mode==='auto'&&normal){
+    // Rough training-intensity estimate from easy-pace, conservatively blended
+    // with a known 5-km baseline; not the same as a measured 5-km race result.
+    const knownPace=manualSec/5, estimated=normal.seconds-85;
+    const blend=Math.max(knownPace-25,Math.min(knownPace+30,knownPace*.5+estimated*.5));
+    return {seconds:Math.round(blend*5),source:`Geschätzt aus ${normal.count} normalen Läufen`};
+  }
+  return {seconds:manualSec,source:`5-km-Basis: ${paceOnly(manualSec)} min`};
+}
+function easyPaces(){
+ const normal=normalPaceFromActivities(),fivePace=fiveKSeconds().seconds/5;
+ if(normal&&currentPaceSettings.mode==='auto'){
+  const p=normal.seconds;
+  return {easy:[paceOnly(p-15),paceOnly(p+20)],recovery:[paceOnly(p+10),paceOnly(p+40)],long:[paceOnly(p),paceOnly(p+30)],jog:[paceOnly(p+55),paceOnly(p+90)]};
+ }
+ return {easy:[paceOnly(fivePace+70),paceOnly(fivePace+110)],recovery:[paceOnly(fivePace+80),paceOnly(fivePace+125)],long:[paceOnly(fivePace+75),paceOnly(fivePace+115)],jog:[paceOnly(fivePace+130),paceOnly(fivePace+205)]};
+}
+function calendarWeekIndex(date){const x=monday(date);const a=Date.UTC(x.getFullYear(),x.getMonth(),x.getDate()),b=Date.UTC(2026,10,23);return Math.round((a-b)/(7*DAY))}
+function intervalPlan(date,reduced=false){
+ const week=calendarWeekIndex(date),template=INTERVAL_LIBRARY[((week%INTERVAL_LIBRARY.length)+INTERVAL_LIBRARY.length)%INTERVAL_LIBRARY.length];
+ const fivePace=fiveKSeconds().seconds/5;
+ const x=reduced ? {...template,reps:template.reps.slice(0,Math.max(3,Math.ceil(template.reps.length*.68)))}:template;
+ const fast=x.reps.map(m=>({meters:m,seconds:m/1000*fivePace*x.factor}));
+ const fastSec=fast.reduce((sum,r)=>sum+r.seconds,0);
+ const rests=x.recover*(x.reps.length-1)/1000;
+ const km=round(x.warm+x.cool+fast.reduce((s,r)=>s+r.meters,0)/1000+rests);
+ const easy=easyPaces();
+ const lo=secFromPace(easy.easy[0]),hi=secFromPace(easy.easy[1]);
+ const jog=secFromPace(easy.jog[0]);
+ const totalLow=Math.round((x.warm+x.cool)*lo+fastSec+rests*jog+5*60);
+ const totalHigh=Math.round((x.warm+x.cool)*hi+fastSec*1.04+rests*(jog+45)+8*60);
+ const segments=[...new Set(x.reps)].sort((a,b)=>a-b).map(m=>`${m} m in ${secondsText(m/1000*fivePace*x.factor)} (± ${m<=300?2:m<=600?4:6} s)`).join(' · ');
+ const warmText=`${fmt(x.warm)} km locker einlaufen (${easy.easy.join('–')} min/km) + 5–8 Min Lauf-ABC. `;
+ const repeatText=x.reps.length===new Set(x.reps).size?'Die Pyramide':'Die schnellen Wiederholungen';
+ const details=warmText+`${repeatText}: ${segments}. Zwischen den Abschnitten ${x.recover} m sehr locker traben (≈ ${easy.jog.join('–')} min/km). ${fmt(x.cool)} km locker auslaufen. ${reduced?'Heute bewusst weniger Wiederholungen. ':''}Nicht sprinten – nach dem Montagstraining bei Müdigkeit reduzieren.`;
+ return {title:`${x.reps.length===template.reps.length?template.name:'Gekürzt: '+template.name}`,tag:'BAHN · ABWECHSLUNGSREICH',km,pace:segments,mins:`ca. ${Math.round(totalLow/60)}–${Math.round(totalHigh/60)} Min inkl. Lauf-ABC`,details};
+}
+function paceRace(km){const sec=fiveKSeconds().seconds/5;if(km>=4.5&&km<=5.5)return `${paceOnly(sec-4)}–${paceOnly(sec+6)} min/km`;if(km>=9.5&&km<=10.5)return `${paceOnly(sec*1.05)}–${paceOnly(sec*1.12)} min/km`;return 'Rennpace nach Gefühl'}
+function easyDay(base,type){
+ const ep=easyPaces()[type]||easyPaces().easy;
+ return {...base,pace:ep.join('–')+' min/km',mins:duration(base.km,ep[0],ep[1])+(base.tag.includes('STABI')?' + Stabi':'')};
+}
+
+function importBaselines(){
+ const now=today(), currentStart=monday(now);
+ const weeks=[];for(let i=1;i<=4;i++){const start=addDays(currentStart,-i*7),end=addDays(start,7);const sum=activities.filter(a=>{const d=fromYmd(a.date);return d&&d>=start&&d<end&&a.run}).reduce((n,a)=>n+a.km,0);weeks.push(sum)}
+ const active=weeks.filter(x=>x>0);if(active.length<3)return null;
+ return {avg:round(active.reduce((a,b)=>a+b,0)/active.length),weeks};
+}
+function planDay(date){
+ const dow=(date.getDay()+6)%7;
+ const base=[
+ {title:'Leichtathletik: Technik & Springen',tag:'VEREIN',km:0,pace:'keine Lauf-km',mins:'nach Vereinstraining',details:'Technik, Koordination und Sprünge. Die Belastung zählt – aber wir rechnen keine pauschalen Kilometer.'},
+ intervalPlan(date),
+ {title:'Ruhetag',tag:'ERHOLUNG',km:0,pace:'–',mins:'frei',details:'Kein Lauf. Spaziergang oder sanfte Mobilität okay – heute erholen wir uns bewusst.'},
+ {title:'8 km locker + 20 Min Stabi',tag:'GRUNDLAGE + STABI',km:8,pace:'6:15–6:55/km',mins:'50–55 Min + Stabi',details:'Lockerer Dauerlauf im Gesprächstempo. Danach Aufwärmen + Kraft- und Stabi-Zirkel auf dieser Seite.'},
+ {title:'5 km locker',tag:'LOCKER',km:5,pace:'6:25–7:05/km',mins:'32–35 Min',details:'Sehr entspannt, du solltest problemlos reden können. Bei schweren Beinen lieber kürzen.'},
+ {title:'4 km locker',tag:'LOCKER',km:4,pace:'6:20–7:00/km',mins:'25–28 Min',details:'Entspannt bewegen. Wenn morgen ein Rennen ansteht: nur kurz aktivieren.'},
+ {title:'11 km langer Lauf',tag:'AUSDAUER',km:11,pace:'6:20–7:00/km',mins:'70–77 Min',details:'Ruhig und gleichmäßig. Keine Tempojagd, der längere Lauf stärkt deine Ausdauer.'}
+ ][dow];
+ let p={...base};
+  if(dow===3)p=easyDay(p,'easy');
+  if(dow===4||dow===5)p=easyDay(p,'recovery');
+  if(dow===6)p=easyDay(p,'long');
+ const future=nearbyRace(date),previous=priorRace(date);
+ if(future){const t=future.delta;
+   if(t===7){if(dow===6){p={title:'8 km locker',tag:'WOCHE VOR DEM RENNEN',km:8,pace:'6:20–7:00/km',mins:'51–56 Min',details:'Vorbereitung beginnt: etwas kürzer als sonst, ohne Druck.'}}}
+   if(t>=3&&t<=6){
+    if(dow===0)p={title:'Leichtathletik: Technik reduziert',tag:'VEREIN · REDUZIERT',km:0,pace:'keine Lauf-km',mins:'nach Vereinstraining',details:'Technik mitmachen, belastende Sprünge und Maximalreize möglichst reduzieren.'};
+    if(dow===1)p={title:'5 km locker + 4 Steigerungen',tag:'RENNVORBEREITUNG',km:5,pace:'6:20–7:00/km',mins:'32–36 Min',details:'Lockerer Lauf, danach vier Steigerungen über ca. 80 m ohne Sprint. Heute keine 13 × 200 m.'};
+    if(dow===3)p={title:'6 km locker + sanfte Stabi',tag:'RENNVORBEREITUNG',km:6,pace:'6:20–7:05/km',mins:'38–43 Min',details:'Lockerer Lauf. Stabi nur leicht mit 1 Satz je Übung, keine schwere Kraftbelastung.'};
+    if(dow===6)p={title:'8 km locker',tag:'TAPERING',km:8,pace:'6:20–7:00/km',mins:'51–56 Min',details:'Etwas kürzer, damit du frisch ins Rennen kommst.'};
+   }
+   if(t===2){if(dow===0)p={title:'Leichtathletik sehr locker',tag:'SCHONUNG',km:0,pace:'keine Lauf-km',mins:'nach Vereinstraining',details:'Nur Technik locker; intensive Sprünge und harte Sprints möglichst vermeiden.'};else if(dow===2)p=base;else p={title:'Ruhetag vor dem Wettkampf',tag:'TAPERING',km:0,pace:'–',mins:'frei',details:'Heute bewusst erholen, Schlaf und Trinken priorisieren. Keine Stabi-Einheit.'}}
+   if(t===1){if(dow===2)p=base;else p={title:'Kurze Aktivierung',tag:'VOR DEM RENNEN',km:3,pace:'6:25–7:05/km',mins:'19–22 Min',details:'3 km locker plus 3 kurze Steigerungen. Wenn du müde bist, ganz pausieren.'}}
+ }
+ if(previous){
+  if(previous.delta===1){p={title:'Regeneration nach Wettkampf',tag:'ERHOLUNG',km:0,pace:'–',mins:'frei',details:'Ausruhen, spazieren oder sanft mobilisieren. Kein Muss, keine Kilometer nachholen.'};}
+  else if(previous.delta===2){p={title:'4 km sehr locker oder Pause',tag:'REGENERATION',km:4,pace:'6:35–7:20/km',mins:'26–29 Min',details:'Nur wenn du dich erholt fühlst; sonst Ruhetag. Keine Intervalle oder schwere Stabi.'};if(dow===2)p=base;}
+ }
+ const race=races.find(r=>matches(r,date));
+ if(race){
+  const km=Number(race.km),warm=km<=3?2:1.5,cool=km<=3?1.5:1.5,full=round(km+warm+cool);
+  const pace=paceRace(km),paceVal=fiveKSeconds().seconds/5,raceTime=km===5?`${paceOnly(paceVal*5)}–${paceOnly((paceVal+7)*5)} Min Rennen` : km===10?`${paceOnly(paceVal*10*1.05)}–${paceOnly(paceVal*10*1.12)} Min Rennen`:'Rennzeit nach Tagesform';
+  p={title:`Wettkampf · ${fmt(km)} km 🏅`,tag:'WETTKAMPF',km:full,pace,mins:`${raceTime} + Ein-/Auslaufen`,details:`${fmt(warm)} km locker einlaufen, Lauf-ABC/Steigerungen, ${fmt(km)} km Wettkampf, ${fmt(cool)} km locker auslaufen, falls du dich gut fühlst. Geplante ${fmt(full)} km inkl. Ein-/Auslaufen.`,race:true};
+ }
+ // If the imported history shows a lower running baseline, gradually approach target in ordinary weeks.
+ const baseline=importBaselines();
+ if(!race&&!future&&!previous&&baseline&&baseline.avg<28&&p.km>0){
+  const scale=Math.max(.47,Math.min(1,baseline.avg*1.12/37));
+  if(dow===1){p=intervalPlan(date,true);p.details+=' Der Umfang ist an deinen zuletzt erfassten Wochen angepasst.'}
+   else {p.km=round(p.km*scale,.0);p.km=Math.max(2,p.km);p.title=p.title.replace(/^\d+(?:[.,]\d+)? km/,`${p.km} km`);p.mins=duration(p.km,easyPaces().easy[0],easyPaces().easy[1]);p.details+=' (Umfang wegen der importierten Wochenkilometer reduziert.)'}
+ }
+  // Every non-race, non-interval run uses the current activity-based pace.
+  if(p.km>0&&!p.race&&!p.tag.includes('BAHN')){
+    const paceType=dow===6?'long':(/erholung|regeneration|sehr locker|vor dem rennen|vorbereitung|tapering|aktivierung|schonung/i.test(p.tag+' '+p.title)?'recovery':'easy');
+    const range=easyPaces()[paceType];
+    p.pace=range.join('–')+' min/km';
+    p.mins=duration(p.km,range[0],range[1])+(p.tag.includes('STABI')?' + 15–20 Min Stabi':'');
+  }
+  return p;
+}
+
+function actualFor(date){const key=ymd(date);const arr=activities.filter(a=>a.date===key&&a.run);const km=round(arr.reduce((n,a)=>n+a.km,0));const sec=arr.reduce((n,a)=>n+(Number(a.seconds)||0),0);return {items:arr,km,seconds:sec}}
+function dayStatus(date,plan){const actual=actualFor(date),now=today(),key=ymd(date);if(actual.km>0){
+ const pace=actual.seconds&&actual.km?formatPace(actual.seconds/actual.km):'–';
+ if(plan.km===0)return {text:`⌚ ${fmt(actual.km)} km gelaufen · ${pace} (geplanter Erholungstag)`,cls:'warn'};
+ const raceDistance=races.find(r=>r.date===key)?.km;
+ const raceDetected=!!(plan.race&&raceDistance&&actual.km>=Number(raceDistance)*.9);
+ const hit=actual.km>=plan.km*.85 || raceDetected;
+ const evaluation=raceDetected&&actual.km<plan.km*.85?'Rennen erkannt ✓':'Geschafft ✓';
+ return {text:`⌚ ${fmt(actual.km)} von ${fmt(plan.km)} km · Ø ${pace} · ${hit?evaluation:'teilweise'}`,cls:hit?'ok':'warn'};
+ }
+ if(plan.km===0){if(manual[key])return {text:'✓ Bestätigt',cls:'ok'};return {text:'Kein Lauf nötig',cls:'none'}}
+ if(date<now)return {text:'Nicht erfasst',cls:'none'};
+ return {text:'Noch offen',cls:'none'};
+}
+function formatPace(secPerKm){if(!isFinite(secPerKm)||secPerKm<=0||secPerKm>1800)return '–';let m=Math.floor(secPerKm/60),s=Math.round(secPerKm-m*60);if(s===60){m++;s=0}return `${m}:${String(s).padStart(2,'0')} min/km`}
+function renderCards(){const now=today(),tm=addDays(now,1);for(const [node,date,label] of [['todayCard',now,'Heute'],['tomorrowCard',tm,'Morgen']]){const p=planDay(date);const actual=actualFor(date);$(node).innerHTML=`<div class="eyeline">${label} · ${formatDate(date)}</div><h3>${safe(p.title)}</h3><div class="pace">${p.km?fmt(p.km)+' km · '+safe(p.pace):'Keine Lauf-km'}</div><span class="pill">${safe(p.mins||'frei')}</span>${actual.km>0?`<div class="good" style="font-size:11px;margin-top:6px">✓ ${fmt(actual.km)} km erfasst</div>`:''}`;}
+ const next=races.filter(r=>r.date>=ymd(now)).sort((a,b)=>a.date.localeCompare(b.date))[0];
+ $('motivation').textContent=next?`🏅 Noch ${diff(fromYmd(next.date),now)} Tage bis zum Rennen. Du packst das! 💗`:'💗 Du musst nicht perfekt sein – nur dranbleiben!';
+}
+function renderWeek(){const start=viewing,end=addDays(start,6),todayDate=today();$('weekLabel').textContent=`${formatDate(start)} – ${formatDate(end)}`;let sum=0,actualSum=0;let raceMode=false;
+ $('week').innerHTML=Array.from({length:7},(_,i)=>{const date=addDays(start,i),p=planDay(date),status=dayStatus(date,p);sum+=p.km;actualSum+=actualFor(date).km;
+ if(p.race||nearbyRace(date)||priorRace(date))raceMode=true;
+ const names=['Mo','Di','Mi','Do','Fr','Sa','So'];return `<article class="day ${ymd(date)===ymd(todayDate)?'today':''}"><div class="day-date"><b>${names[i]}</b><span>${formatDate(date)}</span></div><div><span class="tag">${safe(p.tag)}</span><div class="day-title"><b>${safe(p.title)}</b><strong>${p.km?fmt(p.km)+' km':'0 km'}</strong></div><div class="numbers">${p.km?safe(p.pace)+' · '+safe(p.mins):safe(p.mins)}</div><details class="inline-more"><summary>Training ansehen</summary><p>${safe(p.details)}</p></details><div class="actual ${status.cls}">${safe(status.text)}</div>${p.km===0?`<div class="actions" style="margin-top:6px"><button class="ghost manualDay" data-day="${ymd(date)}">${manual[ymd(date)]?'✓ Bestätigt':'Tag abhaken'}</button></div>`:''}</div></article>`}).join('');
+ $('weekType').textContent=raceMode?'🏅 Wettkampfphase':'Normalwoche';$('plannedKm').textContent=fmt(sum);$('actualKm').textContent=fmt(actualSum);$('progressFill').style.width=Math.max(0,Math.min(100,100*actualSum/Math.max(sum,1)))+'%';
+ const base=importBaselines();$('weekSummary').textContent=raceMode?'🏅 Wettkampfwoche: weniger Umfang, mehr Erholung.':base&&base.avg<28?`📈 Bisher Ø ${fmt(base.avg)} km/Woche – Umfang wird langsam erhöht.`:`🌸 Ziel: 35–40 km. ${fiveKSeconds().source}.`;
+ document.querySelectorAll('.manualDay').forEach(b=>b.addEventListener('click',()=>{manual[b.dataset.day]=!manual[b.dataset.day];writeStore('lc_manual_v3',manual);renderWeek()}));
+}
+function renderRaceList(){const now=ymd(today());$('raceList').innerHTML=races.length?races.map((r,i)=>`<div class="raceitem"><div><b>🏅 ${safe(new Date(r.date+'T12:00:00').toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}))} · ${fmt(r.km)} km</b><span class="muted">${r.date<now?'Vergangen · bleibt im Verlauf':'Vorbereitung startet 7 Tage davor'}</span></div><button class="ghost removeRace" data-index="${i}" aria-label="Wettkampf entfernen">✕</button></div>`).join(''):'<p class="small">Noch kein Wettkampf eingetragen. Trage einfach ein Datum und die Distanz ein.</p>';
+ document.querySelectorAll('.removeRace').forEach(b=>b.addEventListener('click',()=>{races.splice(Number(b.dataset.index),1);writeStore('lc_races_v3',races);renderAll()}));
+}
+function renderAll(){renderRaceList();renderCards();renderWeek();renderData();}
+$('raceDate').min=ymd(today());$('raceDate').value=ymd(addDays(today(),12));
+$('raceDistance').addEventListener('change',()=>{$('customWrap').classList.toggle('hidden',$('raceDistance').value!=='custom')});
+$('raceForm').addEventListener('submit',e=>{e.preventDefault();const date=$('raceDate').value;const km=$('raceDistance').value==='custom'?Number($('customDistance').value):Number($('raceDistance').value);if(!fromYmd(date)||!Number.isFinite(km)||km<=0||km>100){$('raceMessage').textContent='Bitte gültiges Datum und eine Distanz eingeben.';return}races.push({date,km});races.sort((a,b)=>a.date.localeCompare(b.date));writeStore('lc_races_v3',races);viewing=monday(fromYmd(date));$('raceMessage').textContent='💗 Gespeichert! Dein Plan ist angepasst – auch in den Tagen vor dem Rennen.';renderAll();$('wochenplan').scrollIntoView({behavior:'smooth',block:'start'})});
+$('showRaceWeek').addEventListener('click',()=>{const next=races.find(r=>r.date>=ymd(today()));if(next){viewing=monday(fromYmd(next.date));renderWeek();$('wochenplan').scrollIntoView({behavior:'smooth'})}else $('raceMessage').textContent='Trage zuerst einen Wettkampf ein.'});
+$('prevWeek').addEventListener('click',()=>{viewing=addDays(viewing,-7);renderWeek()});$('nextWeek').addEventListener('click',()=>{viewing=addDays(viewing,7);renderWeek()});$('thisWeek').addEventListener('click',()=>{viewing=monday(today());renderWeek()});
+function parseNum(v){if(typeof v==='number')return v;let s=String(v||'').trim().replace(/\s/g,'').replace(/km$/i,'');if(!s)return NaN;if(s.includes(',')&&s.includes('.')){if(s.lastIndexOf(',')>s.lastIndexOf('.'))s=s.replace(/\./g,'').replace(',','.');else s=s.replace(/,/g,'')}else if(s.includes(','))s=s.replace(',','.');const x=Number(s);return isFinite(x)?x:NaN}
+function parseTime(v){const s=String(v??'').trim();if(!s)return 0;if(/^\d+(?:\.\d+)?$/.test(s))return Number(s);const chunks=s.split(':').map(Number);if(chunks.some(x=>!isFinite(x)))return 0;if(chunks.length===3)return chunks[0]*3600+chunks[1]*60+chunks[2];if(chunks.length===2)return chunks[0]*60+chunks[1];return 0}
+function parseDate(s){if(!s)return null;const text=String(s).trim();if(/^\d{4}-\d{2}-\d{2}/.test(text))return text.slice(0,10);let m=text.match(/^(\d{1,2})[.\/](\d{1,2})[.\/](\d{4})/);if(m){let a=Number(m[1]),b=Number(m[2]);if(a>12||text.includes('.'))return `${m[3]}-${String(b).padStart(2,'0')}-${String(a).padStart(2,'0')}`;if(b>12)return `${m[3]}-${String(a).padStart(2,'0')}-${String(b).padStart(2,'0')}`;return `${m[3]}-${String(b).padStart(2,'0')}-${String(a).padStart(2,'0')}`}const d=new Date(text);return isNaN(d.getTime())?null:ymd(d)}
+function splitCSV(text){const lines=[];let row=[],field='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){field+='"';i++}else quoted=!quoted}else if(!quoted&&(c===','||c===';'||c==='\t'||c==='\n'||c==='\r')){const delim=splitCSV.delim;if(c===delim){row.push(field);field=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(field);if(row.some(x=>x.trim()))lines.push(row);row=[];field=''}else field+=c}else field+=c;}row.push(field);if(row.some(x=>x.trim()))lines.push(row);return lines}
+function detectDelimiter(line){let state=false,counts={';':0,',':0,'\t':0};for(let i=0;i<line.length;i++){if(line[i]==='"')state=!state;else if(!state&&line[i] in counts)counts[line[i]]++}return Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0]}
+function parseCSV(text,filename){const first=text.split(/\r?\n/)[0];splitCSV.delim=detectDelimiter(first);const rows=splitCSV(text);if(rows.length<2)throw Error('CSV enthält keine Aktivitätszeilen.');const keys=rows.shift().map(x=>x.trim().toLowerCase().replace(/\ufeff/g,''));const col=(row,aliases)=>{let i=keys.findIndex(k=>aliases.some(a=>k===a));if(i<0)i=keys.findIndex(k=>aliases.some(a=>k.includes(a)));return i>=0?row[i]:''};const records=[];for(const row of rows){const date=parseDate(col(row,['datum','date','activity date','start time','start_date_local']));if(!date)continue;const type=String(col(row,['aktivitätstyp','activity type','sport','typ','type'])).toLowerCase();if(type&&!/run|lauf|jog|cross|trail|track|treadmill|running/.test(type))continue;let distance=parseNum(col(row,['distanz','distance (km)','distance','kilometer','kilometres','kilometers']));if(!Number.isFinite(distance)||distance<=0)continue;if(distance>200)distance/=1000;const duration=parseTime(col(row,['moving time','zeit in bewegung','zeit','moving_time','elapsed time','dauer','duration']));const title=col(row,['titel','title','activity name','aktivität','name'])||'Lauf';records.push({date,km:round(distance,3),seconds:duration,title:String(title).slice(0,90),run:true,source:filename});}return records}
+const ns=(node,local)=>[...node.getElementsByTagName('*')].filter(e=>e.localName===local);
+function parseTCX(text,name){const doc=new DOMParser().parseFromString(text,'application/xml');if(doc.getElementsByTagName('parsererror').length)throw Error('TCX-Datei konnte nicht gelesen werden.');let acts=ns(doc,'Activity'),out=[];for(const act of acts){let date=(ns(act,'Id')[0]?.textContent||ns(act,'Time')[0]?.textContent||'').slice(0,10);if(!date)continue;let km=0,sec=0;for(const lap of ns(act,'Lap')){const direct=[...lap.children];let dist=direct.find(c=>c.localName==='DistanceMeters'),time=direct.find(c=>c.localName==='TotalTimeSeconds');km+=Number(dist?.textContent||0)/1000;sec+=Number(time?.textContent||0)}if(km>0)out.push({date,km:round(km,3),seconds:Math.round(sec),run:true,title:'Garmin TCX Lauf',source:name})}return out}
+const rad=x=>x*Math.PI/180;
+function haversine(a,b){const dlat=rad(b[0]-a[0]),dlon=rad(b[1]-a[1]);const z=Math.sin(dlat/2)**2+Math.cos(rad(a[0]))*Math.cos(rad(b[0]))*Math.sin(dlon/2)**2;return 6371*2*Math.atan2(Math.sqrt(z),Math.sqrt(1-z))}
+function parseGPX(text,name){const doc=new DOMParser().parseFromString(text,'application/xml');if(doc.getElementsByTagName('parsererror').length)throw Error('GPX-Datei konnte nicht gelesen werden.');const tracks=ns(doc,'trk');let result=[];for(const trk of tracks){let km=0,first='',last='';const segments=ns(trk,'trkseg');for(const seg of segments){const points=[...seg.children].filter(e=>e.localName==='trkpt');let prev=null;for(const pt of points){const a=[Number(pt.getAttribute('lat')),Number(pt.getAttribute('lon'))];if(prev&&a.every(Number.isFinite))km+=haversine(prev,a);prev=a;const time=ns(pt,'time')[0]?.textContent||'';if(time&&!first)first=time;if(time)last=time}}if(km>0&&first){let sec=Math.max(0,Math.round((Date.parse(last)-Date.parse(first))/1000));result.push({date:first.slice(0,10),km:round(km,3),seconds:sec,title:ns(trk,'name')[0]?.textContent||'Garmin GPX Lauf',run:true,source:name})}}return result}
+function normalizeActivity(a){return {...a,id:`${a.date}|${a.km}|${a.seconds}|${a.title}`}}
+$('activityFile').addEventListener('change',async e=>{const files=[...e.target.files],messages=[];let imported=0;for(const file of files){try{const content=await file.text();const ext=file.name.split('.').pop().toLowerCase();let records=ext==='csv'?parseCSV(content,file.name):ext==='tcx'?parseTCX(content,file.name):ext==='gpx'?parseGPX(content,file.name):[];if(!['csv','gpx','tcx'].includes(ext))throw Error('Bitte CSV, GPX oder TCX verwenden.');const ids=new Set(activities.map(a=>a.id));for(const r of records){const v=normalizeActivity(r);const duplicate=activities.some(a=>a.date===v.date&&Math.abs(a.km-v.km)<.03&&a.seconds>0&&v.seconds>0&&Math.abs(a.seconds-v.seconds)<20);if(v.km>0&&v.date&&!ids.has(v.id)&&!duplicate){activities.push(v);ids.add(v.id);imported++}}messages.push(`${file.name}: ${records.length} Aktivität(en) gefunden`)}catch(err){messages.push(`${file.name}: ${err.message}`)}}activities.sort((a,b)=>b.date.localeCompare(a.date));writeStore('lc_activities_v3',activities);$('importMessage').textContent=`${imported} neue Laufaktivität(en) importiert. ${messages.join(' · ')}`;$('activityFile').value='';renderAll()});
+$('clearActivities').addEventListener('click',()=>{if(confirm('Alle importierten Aktivitäten auf diesem Gerät löschen?')){activities=[];writeStore('lc_activities_v3',[]);$('importMessage').textContent='Alle importierten Aktivitäten gelöscht.';renderAll()}});
+function renderData(){
+ if(!activities.length){$('dataResults').innerHTML='<p class="small">Noch keine Laufdaten. Importiere Aktivitäten oder synchronisiere Garmin.</p>';return;}
+ const normal=normalPaceFromActivities(), now=today(),start=addDays(now,-27),recent=activities.filter(a=>{const d=fromYmd(a.date);return d&&d>=start&&d<=now&&a.run});
+ const sum=recent.reduce((v,a)=>v+a.km,0),base=importBaselines();
+ const last=activities.slice(0,3).map(a=>`<div class="actitem"><b>${safe(a.date)} · ${fmt(a.km)} km</b> <span class="muted">· ${a.seconds?formatPace(a.seconds/a.km):'ohne Zeit'}</span></div>`).join('');
+ $('dataResults').innerHTML=`<div class="datagrid"><div class="datachip"><b>${normal?paceOnly(normal.seconds):'–'}</b><span>Normales Lauftempo${normal?' · '+normal.count+' Läufe':''}</span></div><div class="datachip"><b>${base?fmt(base.avg)+' km':'–'}</b><span>Ø Wochenumfang (4 Wochen)</span></div></div><details class="more-section"><summary>Letzte Aktivitäten (${activities.length})</summary><div class="actlist">${last}</div></details>`;
+}
+
+const shape={
+ squat:'<circle cx="72" cy="17" r="9" fill="#e999c8"/><path d="M70 30L57 49L82 59L103 80 M58 49L36 69L23 82M64 38L39 45M71 40L96 45" fill="none" stroke="#8358bb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M82 59L74 76L103 80" fill="none" stroke="#d655a7" stroke-width="7" stroke-linecap="round"/>',
+ bridge:'<circle cx="32" cy="61" r="8" fill="#e999c8"/><path d="M40 60L63 51L88 53L106 77M63 51L72 76M106 77L121 79" fill="none" stroke="#8358bb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M71 51L83 37L99 40" fill="none" stroke="#d655a7" stroke-width="7" stroke-linecap="round"/>',
+ plank:'<circle cx="33" cy="35" r="8" fill="#e999c8"/><path d="M40 39L78 52L108 64M78 52L59 79M108 64L125 77" fill="none" stroke="#8358bb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M59 79L38 80" fill="none" stroke="#d655a7" stroke-width="7" stroke-linecap="round"/>',
+ bird:'<circle cx="53" cy="30" r="8" fill="#e999c8"/><path d="M60 35L78 46L99 46M78 46L67 70M99 46L118 70M63 38L34 28L16 25" fill="none" stroke="#8358bb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M78 46L104 29" fill="none" stroke="#d655a7" stroke-width="7" stroke-linecap="round"/>',
+ calf:'<circle cx="70" cy="15" r="8" fill="#e999c8"/><path d="M70 24L70 46L56 64L56 78M70 46L84 63L84 78M70 32L50 46M70 32L90 46" fill="none" stroke="#8358bb" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 79L62 79 M79 79L97 79" fill="none" stroke="#d655a7" stroke-width="7" stroke-linecap="round"/>',
+ side:'<circle cx="36" cy="24" r="8" fill="#e999c8"/><path d="M44 30L75 48L102 60M75 48L60 71M102 60L119 76" fill="none" stroke="#8358bb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 71L40 74" fill="none" stroke="#d655a7" stroke-width="7" stroke-linecap="round"/>'
+};
+const exercises=[
+ ['squat','Kniebeugen','2 × 10–12 Wiederholungen','Füße schulterbreit. Po nach hinten/unten schieben, dann kontrolliert aufrichten.','Knie folgen den Zehenspitzen, Fersen bleiben am Boden.',0],
+ ['bridge','Glute Bridge','2 × 12 Wiederholungen','Rückenlage, Füße aufstellen. Hüfte heben, oben kurz halten, langsam senken.','Bauch anspannen, nicht ins Hohlkreuz drücken.',0],
+ ['plank','Unterarmstütz','2 × 25 Sekunden','Auf Unterarme stützen, Körper in einer Linie von Kopf bis Fuß halten.','Bauch und Po anspannen; ruhig weiteratmen.',25],
+ ['bird','Bird Dog','2 × 8 pro Seite','Vierfüßlerstand, diagonal Arm und Bein strecken, kurz halten und wechseln.','Becken bleibt stabil und der Rücken lang.',0],
+ ['side','Seitstütz auf Knien','2 × 20 Sekunden je Seite','Seitlich auf Unterarm und gebeugte Knie stützen, Hüfte anheben.','Schulter aktiv, nicht nach vorn kippen.',20],
+ ['calf','Wadenheben','2 × 15 Wiederholungen','Aufrecht stehen, langsam auf Zehenspitzen heben und absenken.','Nicht federn, bei Bedarf festhalten.',0]
+];
+const warmups=[['Locker marschieren','60 Sekunden','Auf der Stelle marschieren, Arme mitschwingen, ruhig atmen.',60],['Fußgelenke mobilisieren','30 Sekunden pro Seite','Kreise beide Sprunggelenke nacheinander langsam; beim Wechsel Timer neu starten.',30],['Beinpendel','10 Wiederholungen pro Bein','Festhalten und ein Bein kontrolliert vor und zurück bewegen.',0],['Lockere Kniebeugen','10 Wiederholungen','Langsam absenken, Fußsohlen am Boden, ohne Zusatzgewicht.',0]];
+const renderWarmup=()=>{$('warmup').innerHTML=warmups.map((w,i)=>`<div class="routine"><b>${i+1}. ${safe(w[0])}</b><div class="eyeline">${safe(w[1])}</div><p>${safe(w[2])}</p>${w[3]?`<div class="actions"><button class="secondary timerButton" data-time="${w[3]}">⏱ Timer starten</button></div><div class="timer" aria-live="polite"></div>`:''}</div>`).join('')};
+const renderExercises=()=>{$('exercises').innerHTML=exercises.map((ex,i)=>`<article class="exercise"><div class="art"><svg role="img" aria-label="Schematische Übungsillustration ${safe(ex[1])}" viewBox="0 0 140 92"><path d="M10 83 H130" stroke="#ddc6e6" stroke-width="3" stroke-linecap="round"/>${shape[ex[0]]}</svg></div><div class="exbody"><b>${safe(ex[1])}</b><div class="eyeline">${safe(ex[2])}</div><p class="instruction">${safe(ex[3])}</p><p>💡 ${safe(ex[4])}</p><p>Pause zwischen Sätzen: 30–45 Sek.</p><div class="exbuttons">${ex[5]?`<button class="secondary timerButton" data-time="${ex[5]}">⏱ ${ex[5]} Sek.</button>`:''}<button class="primary setButton" data-ex="${i}">Satz 1 ✓</button><button class="secondary timerButton" data-time="35">Pause 35 Sek.</button></div><div class="timer" aria-live="polite"></div></div></article>`).join('');bindSets()};
+const timerIntervals=new WeakMap();document.addEventListener('click',e=>{const btn=e.target.closest('.timerButton');if(!btn)return;const panel=btn.closest('.routine,.exbody'),display=panel.querySelector('.timer');const existing=timerIntervals.get(panel);if(existing)clearInterval(existing);let seconds=Number(btn.dataset.time);display.textContent=`${seconds} s`;const timer=setInterval(()=>{seconds--;if(seconds<=0){clearInterval(timer);timerIntervals.delete(panel);display.textContent='Geschafft! 💗';return}display.textContent=`${seconds} s`},1000);timerIntervals.set(panel,timer)});
+function bindSets(){document.querySelectorAll('.setButton').forEach(b=>{const n=Number(b.dataset.ex),weekKey=ymd(monday(today()));const key='lc_stabi_'+weekKey;let state=readStore(key,{});function update(){const c=Number(state[n]||0);b.textContent=c>=2?'Beide Sätze ✓':c===1?'Satz 2 ✓':'Satz 1 ✓';b.disabled=c>=2}update();b.addEventListener('click',()=>{state=readStore(key,{});state[n]=Math.min(2,Number(state[n]||0)+1);writeStore(key,state);update()})})}
+
+function renderIntervalPreview(){
+ const now=today(),di=addDays(monday(now),1),nextTue=di<now?addDays(di,7):di;
+ const p=planDay(nextTue);
+ $('intervalPreview').innerHTML=`<b>${safe(formatLong(nextTue))} · ${safe(p.title)}</b><br><span style="font-weight:850;color:#9a438e">${fmt(p.km)} km · ${safe(p.mins)}</span><details class="inline-more"><summary>Intervalle + Pausen anzeigen</summary><p>${safe(p.details)}</p></details>`;
+ const normal=normalPaceFromActivities();
+ $('paceSource').textContent=normal&&currentPaceSettings.mode==='auto'?
+  `🟣 Normaltempo: ${paceOnly(normal.seconds)} min/km (${normal.count} Läufe) · Tempo automatisch angepasst`:
+  `🟣 Basis: 5 km in ${paceOnly(fiveKSeconds().seconds)} Min · Für automatische Paces Garmin-Läufe laden`;
+
+}
+const _renderAll=renderAll;
+renderAll=function(){_renderAll();renderIntervalPreview();};
+const paceSettings=readStore('lc_pace_settings_v4',{five:'25:30',mode:'auto'});
+$('fiveKTime').value=paceSettings.five;
+$('paceMode').value=paceSettings.mode;
+$('savePace').addEventListener('click',()=>{
+ const value=$('fiveKTime').value.trim();
+ if(!/^\d{1,2}:[0-5]\d$/.test(value)){ $('paceSource').textContent='Bitte die 5-km-Zeit als MM:SS eingeben, z. B. 25:30.'; return;}
+ const [m,sec]=value.split(':').map(Number),total=m*60+sec;
+ if(total<900||total>3600){$('paceSource').textContent='Bitte eine realistische Zeit zwischen 15 und 60 Minuten eintragen.';return;}
+ currentPaceSettings={five:value,mode:$('paceMode').value};
+ writeStore('lc_pace_settings_v4',currentPaceSettings);
+ renderAll();
+});
+let garminIsConfigured=false, garminIsSyncing=false;
+function hasGarminKey(){
+ return Boolean(GARMIN_API_KEY.trim()) && !GARMIN_API_KEY.includes('HIER_DEIN_') && !/^https?:\/\//i.test(GARMIN_API_KEY.trim());
+}
+function checkGarmin(){
+ garminIsConfigured=hasGarminKey();
+ $('garminBadge').textContent=garminIsConfigured?'Schlüssel eingetragen':'Kein Schlüssel';
+ $('syncGarmin').disabled=!garminIsConfigured;
+ $('garminStatus').textContent=garminIsConfigured?
+   'Schlüssel erkannt · Verbindung noch nicht geprüft.':
+   'Keine direkte Verbindung. Dateiimport ist möglich.';
+}
+function cleanGarminActivity(a){
+ const sport=String(a?.activityType?.typeKey || a?.activityType || '').toLowerCase();
+ if(!sport.includes('run') && !sport.includes('lauf'))return null;
+ const distance=Number(a.distance),seconds=Number(a.movingDuration||a.duration||a.elapsedDuration||0);
+ const date=String(a.startTimeLocal||a.startTimeGMT||'').slice(0,10);
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||!(distance>0&&distance<250000))return null;
+ const event=String(a.eventType?.typeKey||a.eventType||'').toLowerCase();
+ const title=String(a.activityName||'Garmin-Lauf').slice(0,140);
+ return {date,km:Math.round(distance/100)/10,seconds:Number.isFinite(seconds)?Math.round(seconds):0,title,id:'garmin:'+String(a.activityId||`${date}:${distance}:${seconds}`),source:'Garmin Personal API',race:event.includes('race')||/(wettkampf|rennen|race|parkrun)/i.test(title),run:true};
+}
+async function syncGarmin(){
+ if(!garminIsConfigured||garminIsSyncing)return;
+ garminIsSyncing=true;$('syncGarmin').disabled=true;
+ $('garminStatus').textContent='Garmin-Verbindung wird getestet …';
+ try{
+   // Der offizielle Garmin-Endpunkt gibt ein JWT als Text zurück.
+   const tokenRes=await fetch(TOKEN_URL,{
+     method:'POST',headers:{Authorization:`ApiKey ${GARMIN_API_KEY}`,Accept:'*/*'},
+     signal:AbortSignal.timeout(16000)
+   });
+   if(!tokenRes.ok)throw new Error(`Schlüssel wurde von Garmin abgelehnt (HTTP ${tokenRes.status}).`);
+   const bearer=(await tokenRes.text()).trim();
+   if(bearer.split('.').length!==3)throw new Error('Garmin lieferte keinen erwarteten Zugriffstoken.');
+   const after=new Date();after.setDate(after.getDate()-175);
+   const params=new URLSearchParams({start:'0',limit:'100',startDate:ymd(after),endDate:ymd(today()),activityType:'running',excludeChildren:'true'});
+   const res=await fetch(ACTIVITIES_URL+'?'+params,{headers:{Authorization:`Bearer ${bearer}`,Accept:'application/json'},signal:AbortSignal.timeout(16000)});
+   if(!res.ok)throw new Error(`Aktivitäten konnten nicht gelesen werden (HTTP ${res.status}).`);
+   const json=await res.json();
+   const page=Array.isArray(json)?json:(json.activities||json.data||[]);
+   if(!Array.isArray(page))throw new Error('Unerwartetes Format der Garmin-Daten.');
+   let added=0;
+   for(const raw of page){
+     const a=cleanGarminActivity(raw);
+     if(!a)continue;
+     const dup=activities.some(v=>v.id===a.id||v.date===a.date&&Math.abs(v.km-a.km)<.03&&Math.abs((v.seconds||0)-(a.seconds||0))<15);
+     if(!dup){activities.push(a);added++;}
+   }
+   activities.sort((a,b)=>b.date.localeCompare(a.date));
+   writeStore('lc_activities_v3',activities);
+   $('garminBadge').textContent='Verbunden ✓';
+   $('garminStatus').textContent=`Garmin erreichbar! ${page.length} Aktivitäten geprüft, ${added} neue Läufe übernommen. Für weitere Seiten ist ein Server sinnvoll.`;
+   renderAll();
+ }catch(e){
+   $('garminBadge').textContent='Verbindung nicht möglich';
+   const network=e instanceof TypeError;
+   $('garminStatus').textContent=network?
+     'Direkter Zugriff im Browser blockiert (möglicherweise CORS). Bitte Dateiimport verwenden oder einen sicheren Server einrichten.':
+     'Garmin-Verbindung fehlgeschlagen: '+String(e.message||e)+' – Manuelle Dateiimporte funktionieren weiterhin.';
+ }finally{garminIsSyncing=false;$('syncGarmin').disabled=!garminIsConfigured;}
+}
+$('syncGarmin').addEventListener('click',syncGarmin);
+$('recheckGarmin').addEventListener('click',checkGarmin);
+
+// Geführtes Kraft- & Stabi-Training: große Einzelkarte, aufeinanderfolgende Timer
+const guided={steps:[],index:0,deadline:0,remaining:0,tickId:null,paused:false,open:false,doneUntil:new Set(),completed:false};
+const byId=id=>document.getElementById(id);
+function makeGuidedSteps(){
+ const W=(title,meta,text,secs,emoji)=>({kind:'warm',title,meta,text,seconds:secs,emoji});
+ const R=(title,meta,text,emoji)=>({kind:'reps',title,meta,text,emoji});
+ const out=[
+  W('Locker marschieren','60 Sekunden · Warm-up','Auf der Stelle gehen, Arme mitschwingen und ganz entspannt in Bewegung kommen.',60,'🚶‍♀️'),
+  W('Fußgelenke mobilisieren','Linke Seite · 30 Sek.','Den linken Fuß anheben und das Fußgelenk langsam in beide Richtungen kreisen lassen.',30,'🦶'),
+  W('Fußgelenke mobilisieren','Rechte Seite · 30 Sek.','Jetzt den rechten Fuß anheben und kontrolliert kreisen lassen.',30,'🦶'),
+  R('Beinpendel','10 pro Bein','Festhalten, ein Bein vor und zurück pendeln lassen. Dann die Seite wechseln.','🦵'),
+  R('Lockere Kniebeugen','10 Wiederholungen','Langsam absenken, Fersen am Boden lassen, kontrolliert aufrichten.','💗')
+ ];
+ out.forEach(x=>{x.phase='Aufwärmen';x.tip='Beweg dich kontrolliert und ohne Hektik.'});
+ exercises.forEach((ex,i)=>{
+  const sec=Number(ex[5]);
+  for(let set=1;set<=2;set++){
+   const sides=(i===4?['links','rechts']:[null]);
+   sides.forEach(side=>{
+    out.push({kind:sec?'timed':'reps',phase:'Kraft & Stabi',title:ex[1],meta:`Satz ${set}/2${side?' · '+side:''} · ${ex[2].replace('2 × ','')}`,text:ex[3],tip:ex[4],seconds:sec,exIndex:i,set,side,shapeKey:ex[0],emoji:'💜'});
+    // Kurze Umpositionierung zwischen Seiten, Satzpause nach jedem Satz.
+    const lastSide= !side || side==='rechts';
+    const isLast=i===exercises.length-1&&set===2&&lastSide;
+    if(!isLast){
+     const pauseSecs=lastSide?35:10;
+     out.push({kind:'rest',phase:'Pause',title:lastSide?'Kurz durchatmen':'Seite wechseln',meta:`${pauseSecs} Sekunden`,text:lastSide?'Lockere Arme und Beine, atme ruhig. Gleich geht es weiter.':'Wechsle kontrolliert zur anderen Seite.',seconds:pauseSecs,emoji:'🌸'});
+    }
+   });
+  }
+ });
+ out.push({kind:'finish',phase:'Geschafft!',title:'Stark gemacht! 🥳',meta:'Dein Stabi-Training ist fertig',text:'Du hast Aufwärmen, Kraft und Stabilität in einem Durchgang geschafft.',tip:'Trink etwas, atme durch und gönn dir Erholung. 💗',emoji:'🏆'});
+ return out;
+}
+function guidedStopTick(){if(guided.tickId!==null){clearInterval(guided.tickId);guided.tickId=null}}
+function guidedClockText(sec){const s=Math.ceil(Math.max(0,sec));return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`}
+function guidedUpdateTimer(){
+ const remain=guided.paused?guided.remaining:Math.max(0,(guided.deadline-Date.now())/1000);
+ byId('guidedClock').textContent=guidedClockText(remain);
+ if(remain<=0&&!guided.paused){guidedStopTick();guidedAdvance();}
+}
+function guidedRunTimer(seconds){
+ guidedStopTick();guided.remaining=seconds;guided.paused=false;guided.deadline=Date.now()+seconds*1000;
+ byId('guidedPause').textContent='⏸ Pause';
+ guidedUpdateTimer();guided.tickId=setInterval(guidedUpdateTimer,120);
+}
+function guidedVisual(step){
+ const holder=byId('guidedVisual');
+ if(step.shapeKey&&shape[step.shapeKey]){
+  holder.innerHTML=`<svg role="img" viewBox="0 0 140 92"><path d="M10 83 H130" stroke="#ddc6e6" stroke-width="3" stroke-linecap="round"/>${shape[step.shapeKey]}</svg>`;
+ }else{
+  holder.innerHTML=`<span class="bigemoji">${step.emoji||'💜'}</span>`;
+ }
+}
+function guidedSetSavedStep(step){
+ if(step.exIndex===undefined || step.set===undefined)return;
+ // Für Seitstütz erst speichern, nachdem beide Seiten dieses Satzes geschafft sind.
+ if(step.side==='links')return;
+ const key='lc_stabi_'+ymd(monday(today()));
+ const state=readStore(key,{});
+ state[step.exIndex]=Math.max(Number(state[step.exIndex]||0),step.set);
+ writeStore(key,state);
+ // Die abhakbare Übersicht bei erneutem Öffnen entsprechend anzeigen.
+ const btn=document.querySelector(`.setButton[data-ex="${step.exIndex}"]`);
+ if(btn){const count=state[step.exIndex];btn.textContent=count>=2?'Beide Sätze ✓':count===1?'Satz 2 ✓':'Satz 1 ✓';btn.disabled=count>=2}
+}
+function guidedRender(){
+ if(!guided.open)return;
+ guidedStopTick();
+ const step=guided.steps[guided.index];
+ if(!step)return;
+ const finished=step.kind==='finish',timed=['warm','timed','rest'].includes(step.kind);
+ byId('guidedPhase').textContent=step.phase;
+ byId('guidedCounter').textContent=finished?'Trainingsende':`Schritt ${guided.index+1} von ${guided.steps.length-1}`;
+ byId('guidedProgress').style.width=((guided.index+1)/guided.steps.length*100)+'%';
+ guidedVisual(step);
+ byId('guidedTitle').textContent=step.title;
+ byId('guidedMeta').textContent=step.meta;
+ byId('guidedText').textContent=step.text;
+ byId('guidedTip').textContent=step.kind==='rest'?'Zeit zum Durchatmen 💗':(step.tip||'Weiter, wenn du bereit bist.');
+ const next=byId('guidedNext'),pause=byId('guidedPause'),skip=byId('guidedSkip');
+ next.classList.toggle('workout-hidden',timed&&!finished);
+ pause.classList.toggle('workout-hidden',!timed||finished);
+ skip.classList.toggle('workout-hidden',finished);
+ byId('guidedBack').classList.toggle('workout-hidden',guided.index===0||finished);
+ if(finished){guided.completed=true;next.textContent='Training schließen 💗';byId('guidedClock').textContent='✓';byId('guidedClockLabel').textContent='Für heute erledigt';
+  const key='lc_stabi_guided_'+ymd(today());writeStore(key,{finishedAt:new Date().toISOString()});
+  byId('guidedStart').textContent='✓ Training geschafft · nochmal starten';
+  return;
+ }
+ if(timed){byId('guidedClockLabel').textContent=step.kind==='rest'?'Pause läuft automatisch':'Timer läuft automatisch';guidedRunTimer(step.seconds)}
+ else {byId('guidedClock').textContent=step.meta.match(/\d+/)?.[0]||'✓';byId('guidedClockLabel').textContent='Mach die Wiederholungen in deinem Tempo';next.textContent='✓ Fertig · weiter'}
+}
+function guidedAdvance(){
+ const step=guided.steps[guided.index];
+ guidedSetSavedStep(step);
+ if(guided.index<guided.steps.length-1)guided.index++;
+ guidedRender();
+}
+function guidedOpen(){
+ guided.steps=makeGuidedSteps();guided.index=0;guided.open=true;guided.completed=false;
+ byId('guidedWorkout').hidden=false;document.body.style.overflow='hidden';
+ guidedRender();byId('guidedClose').focus();
+}
+function guidedClose(){
+ guidedStopTick();guided.open=false;
+ byId('guidedWorkout').hidden=true;document.body.style.overflow='';
+ byId('guidedStart').focus();
+}
+byId('guidedStart').addEventListener('click',guidedOpen);
+byId('guidedClose').addEventListener('click',guidedClose);
+byId('guidedNext').addEventListener('click',()=>{
+ if(guided.steps[guided.index]?.kind==='finish')guidedClose();else guidedAdvance();
+});
+byId('guidedSkip').addEventListener('click',()=>{if(guided.index<guided.steps.length-1){guided.index++;guidedRender()}});
+byId('guidedBack').addEventListener('click',()=>{if(guided.index>0){guided.index--;guidedRender()}});
+byId('guidedPause').addEventListener('click',()=>{
+ if(!guided.open)return;
+ if(!guided.paused){
+  guided.remaining=Math.max(0,(guided.deadline-Date.now())/1000);
+  guided.paused=true;guidedStopTick();byId('guidedPause').textContent='▶ Weiter';
+  byId('guidedClockLabel').textContent='Pausiert';
+ }else{
+  guidedRunTimer(guided.remaining);
+  byId('guidedClockLabel').textContent='Timer läuft';
+ }
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&guided.open)guidedClose()});
+
+renderWarmup();renderExercises();renderAll();checkGarmin();
+
+})();
+</script>
+</body></html>
